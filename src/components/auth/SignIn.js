@@ -19,7 +19,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="/">
         FEE
       </Link>{' '}
       {new Date().getFullYear()}
@@ -58,9 +58,10 @@ export default function SignIn() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-      <LinkRouter to="/"><Avatar className={classes.avatar}>
-            <Logo className="signInLogo" />
-        </Avatar>
+        <LinkRouter to="/">
+          <Avatar className={classes.avatar}>
+              <Logo />
+          </Avatar>
         </LinkRouter>
         <Typography component="h1" variant="h5">
           Sign in to FEE
@@ -108,7 +109,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signUp" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

@@ -3,6 +3,8 @@ import {BrowserRouter, Switch, Route} from "react-router-dom"
 
 import LandingPage from "./components/layout/LandingPage"
 import SignIn from "./components/auth/SignIn"
+import SignUp from "./components/auth/SignUp"
+
 
 import "./App.css"
 
@@ -14,6 +16,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={LandingPage} />
           <Route path="/signIn"  component={SignIn} />
+          <Route path="/signUp"  component={SignUp} />
         </Switch>
       </div>
     </BrowserRouter>
