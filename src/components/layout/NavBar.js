@@ -1,12 +1,13 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 
+import SignedOutLinks from "./SignedOutLinks"
 import "./Navbar.css"
 
 const NavBar = () => {
     return (
         <header>
-            <Link to="/" className="logo">ENSAK FORUM</Link>
+            <Link to="/" className="logo">FEE</Link>
             <nav>
                 <ul className="nav-links">
                     <li><a href="#">About</a></li>
@@ -15,7 +16,7 @@ const NavBar = () => {
                 </ul>   
             </nav>
             
-            <a className="cta" href="#">Register</a>
+            <SignedOutLinks />
         </header>
     )
 }

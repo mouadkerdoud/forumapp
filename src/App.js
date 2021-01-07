@@ -1,8 +1,8 @@
 import React from 'react'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
-import NavBar from "./components/layout/NavBar"
 import LandingPage from "./components/layout/LandingPage"
+import SignIn from "./components/auth/SignIn"
 
 import "./App.css"
 
@@ -10,9 +10,10 @@ function App() {
   return (
     <BrowserRouter >
       <div>
-        <NavBar />
+        
         <Switch>
           <Route path="/" exact component={LandingPage} />
+          <Route path="/signIn"  component={SignIn} />
         </Switch>
       </div>
     </BrowserRouter>
