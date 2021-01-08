@@ -1,10 +1,10 @@
 import React from 'react'
-import NavBar from "./NavBar"
+import NavBar from "../Navbar/NavBar"
 import {Link} from "react-router-dom"
 
 import "./LandingPage.css"
 
-import {ReactComponent as Logo} from '../../img/microphone.svg';
+import {ReactComponent as Logo} from '../../../img/microphone.svg';
 
 
 const LandingPage = () => {
