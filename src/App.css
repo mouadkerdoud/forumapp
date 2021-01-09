@@ -16,15 +16,18 @@
   background: #1a83ff;
 }
 
+
+                                          /* ADMIN PROFILE */
+
 .container{
   display: flex;
 }
 
 .content{
-  margin-left: 50px;
-  margin-top: 60px;
-
+  max-width: 1000px;
+  margin: auto;
 }
+
 
 .page-title{
   font-family: 'Josefin Sans', sans-serif;
@@ -43,3 +46,18 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+/* ADDING FORMS */
+
+.element-form{
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  width: 500px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0,0, 0, 0.12) 0px 3px 1px -2px;
+}
+
+.form-title{
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
