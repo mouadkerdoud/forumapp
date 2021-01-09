@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import Table from "../../layout/Table/Table"
+import {Link} from "react-router-dom"
 
 const Events = () => {
     return (
@@ -8,7 +9,7 @@ const Events = () => {
             <Sidebar />
             <div className="content">
                 <h1 className="page-title">Events</h1>
-                <button className="add-new">Add New</button>
+                <Link to="/addevent"><button className="add-new">Add New</button></Link>
                 <Table className="table" />
             </div >
         </div>
