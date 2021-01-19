@@ -1,4 +1,9 @@
 import React, {Component} from 'react'
+import  {User} from "../../models/user"
+import UserService from "../../services/user.service"
+import {Redirect} from "react-router-dom"
+
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -52,12 +57,59 @@ class SignUp extends Component {
 
   constructor(props){
     super(props)
-    this.state={}
+    this.state={
+      user: new User("", ""),
+      submitted: false,
+      loading: false,
+      errorMessage: ""
+    }
+
+    
   }
 
+  handleChange(e){
+    var {name, value} = e.target
+    var user= this.state.user
+    user[name] = value
+    this.setState({
+      user: user
+    })
+  }
+
+  handleRegister(e){
+    e.preventDefault();
+    const {user} = this.state
+    this.setState({submitted:true})
+
+    if(!(user.username && user.password && user.firstName && user.lastName)){
+      return 
+    }
+
+    this.setState({loading:true})
+
+    UserService.register(user)
+    .then(data=>{
+      <Redirect to="/signIn" />
+    })
+    .catch(error=>{
+      if(error.response.status === 409){
+          this.setState({
+            errorMessage: "Username is already taken",
+            loading: false
+          })
+      }
+      else{
+        this.setState({
+          errorMessage:"Unexpected error ocurred, try later",
+          loading:false
+        })
+      }
+    })
+  }
 
   render(){
     const { classes } = this.props;
+    const {user, submitted, loading, errorMessage} = this.state
 
     return (
       <Container component="main" maxWidth="xs">
@@ -71,7 +123,7 @@ class SignUp extends Component {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={e=>this.handleRegister(e)}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -83,6 +135,8 @@ class SignUp extends Component {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange = {e=>this.handleChange(e)}
+
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -94,6 +148,8 @@ class SignUp extends Component {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lastName"
+                  onChange = {e=>this.handleChange(e)}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -105,6 +161,8 @@ class SignUp extends Component {
                   label="Username"
                   name="username"
                   autoComplete="username"
+                  onChange = {e=>this.handleChange(e)}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -117,6 +175,8 @@ class SignUp extends Component {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange = {e=>this.handleChange(e)}
+
                 />
               </Grid>
               
