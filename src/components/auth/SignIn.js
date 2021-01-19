@@ -32,7 +32,7 @@ function Copyright() {
 }
 
 
-const styles   = theme => ({
+const styles = theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
