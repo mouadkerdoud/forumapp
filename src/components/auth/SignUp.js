@@ -57,6 +57,11 @@ class SignUp extends Component {
 
   constructor(props){
     super(props)
+
+    if(UserService.currentUserValue){
+      <Redirect to="/home" />
+    }
+
     this.state={
       user: new User("", ""),
       submitted: false,
