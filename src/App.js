@@ -1,10 +1,11 @@
 import React from 'react'
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
 
 import LandingPage from "./components/layout/Landing/LandingPage"
 import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
-
+import NotFound from "./components/errors/NotFound"
+import Unauthorized from "./components/errors/Unauthorized"
 //Admin
 import Dashboard from "./components/admin/Dashboard/Dashboard"
 import Posts from "./components/admin/Posts/Posts"
@@ -29,6 +30,9 @@ function App() {
           <Route path="/" exact component={LandingPage} />
           <Route path="/signIn"  component={SignIn} />
           <Route path="/signUp"  component={SignUp} />
+          <Route path="/404" component={NotFound} />
+          <Route path="/401" component={Unauthorized} />
+          <Redirect from="*" to="/404" />
 
           {/* Admin */}
           <Route path="/dashboard"  component={Dashboard} />
@@ -40,6 +44,7 @@ function App() {
 
           {/* USER */}
           <Route path="/home" component={HomePage} />
+
 
 
         </Switch>
