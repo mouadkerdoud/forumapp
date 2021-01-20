@@ -6,6 +6,9 @@ import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
 import NotFound from "./components/errors/NotFound"
 import Unauthorized from "./components/errors/Unauthorized"
+import AuthGuard from "./guards/AuthGuard"
+import {Role} from "./models/role"
+
 //Admin
 import Dashboard from "./components/admin/Dashboard/Dashboard"
 import Posts from "./components/admin/Posts/Posts"
@@ -34,16 +37,16 @@ function App() {
           <Route path="/401" component={Unauthorized} />
           <Redirect from="*" to="/404" />
 
-          {/* Admin */}
-          <Route path="/dashboard"  component={Dashboard} />
-          <Route path="/posts"  component={Posts} />
-          <Route path="/addpost"  component={AddPost} />
-          <Route path="/events"  component={Events} />
-          <Route path="/addevent"  component={AddEvent} />
+          {/*AuthGuard Admin */}
+          <AuthGuard roles={[Role.ADMIN]} path="/dashboard"  component={Dashboard} />
+          <AuthGuard roles={[Role.ADMIN]} path="/posts"  component={Posts} />
+          <AuthGuard roles={[Role.ADMIN]} path="/addpost"  component={AddPost} />
+          <AuthGuard roles={[Role.ADMIN]} path="/events"  component={Events} />
+          <AuthGuard roles={[Role.ADMIN]} path="/addevent"  component={AddEvent} />
 
 
           {/* USER */}
-          <Route path="/home" component={HomePage} />
+          <AuthGuard path="/home" roles={[Role.ADMIN]} component={HomePage} />
 
 
 
