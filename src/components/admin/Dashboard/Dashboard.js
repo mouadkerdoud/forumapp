@@ -6,7 +6,7 @@ const Dashboard = () => {
         <div className="container" >
             <Sidebar />
             <div className="content">
-                <h1>THIS IS THE DASHBOARD</h1>
+                <h1>THIS IS THE DASHBOARD MR ADMIN </h1>
             </div>
         </div>
     )
