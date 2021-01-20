@@ -106,7 +106,7 @@ class SignIn extends Component {
 
     UserService.login(user)
     .then(data=>{
-      this.props.history.push("/home")
+      UserService.currentUserValue && UserService.currentUserValue.role === "USER" ? this.props.history.push("/home") : this.props.history.push("/dashboard")
     })
     .catch(error=>{
       console.log(error)

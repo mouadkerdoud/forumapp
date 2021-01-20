@@ -47,8 +47,8 @@ function App() {
           <AuthGuard path="/home" roles={[Role.USER]} component={HomePage} />
 
 
-          <Route path="/404" component={NotFound} />
-          <Route path="/401" component={Unauthorized} />
+          <Route  path="/404" component={NotFound} />
+          <Route  path="/401" component={Unauthorized} />
           <Redirect from="*" to="/404" />
 
 
