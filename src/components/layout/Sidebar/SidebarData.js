@@ -3,7 +3,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import EventIcon from '@material-ui/icons/Event';
 import HomeIcon from '@material-ui/icons/Home';
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 export const SidebarData = [
 
@@ -29,5 +29,11 @@ export const SidebarData = [
         title:"Events",
         icon:<EventIcon />,
         link:"/events",
+    },
+
+    {
+        title:"Log Out",
+        icon:<ExitToAppIcon />,
+        link:"/logout",
     }
 ]
