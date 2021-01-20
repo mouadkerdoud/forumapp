@@ -12,7 +12,7 @@ const Sidebar = () => {
     const logout = ()=>{
         UserService.logOut()
             .then(data=>{
-                <Redirect to="/" />
+                this.props.history.push("/")
             })
             .catch(error=>{
                 console.log(error)

@@ -62,8 +62,18 @@ class SignIn extends Component {
     super(props)
 
     if(UserService.currentUserValue){
-      <Redirect to="/home" />
+      switch(UserService.currentUserValue.role){
+        case "ADMIN":
+          this.props.history.push("/dashboard")
+          break
+        case "USER":
+          this.props.history.push("/home")
+          break
+        default:
+          break
+      }
     }
+
 
     this.state={
       user: new User("", ""),
@@ -96,7 +106,7 @@ class SignIn extends Component {
 
     UserService.login(user)
     .then(data=>{
-      <Redirect to="/home" />
+      this.props.history.push("/home")
     })
     .catch(error=>{
       console.log(error)

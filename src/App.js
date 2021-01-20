@@ -33,9 +33,7 @@ function App() {
           <Route path="/" exact component={LandingPage} />
           <Route path="/signIn"  component={SignIn} />
           <Route path="/signUp"  component={SignUp} />
-          <Route path="/404" component={NotFound} />
-          <Route path="/401" component={Unauthorized} />
-          <Redirect from="*" to="/404" />
+         
 
           {/*AuthGuard Admin */}
           <AuthGuard roles={[Role.ADMIN]} path="/dashboard"  component={Dashboard} />
@@ -46,8 +44,12 @@ function App() {
 
 
           {/* USER */}
-          <AuthGuard path="/home" roles={[Role.ADMIN]} component={HomePage} />
+          <AuthGuard path="/home" roles={[Role.USER]} component={HomePage} />
 
+
+          <Route path="/404" component={NotFound} />
+          <Route path="/401" component={Unauthorized} />
+          <Redirect from="*" to="/404" />
 
 
         </Switch>

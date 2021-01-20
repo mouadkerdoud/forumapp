@@ -16,7 +16,7 @@ export class AuthGuard extends Component {
         if(!currentUser){
             return <Redirect to="/signIn" />
         }
-        if(roles && roles.indexIf(currentUser.role) === -1){
+        if(roles && roles.indexOf(currentUser.role) === -1){
             return <Redirect to="401" />
         }
         return (
