@@ -20,7 +20,7 @@ class AdminService{
     }
 
     deleteUser(userId){
-        return axios.post(API_URL + userId, {headers: this.headers})
+        return axios.delete(API_URL + userId, {headers: this.headers})
     }
 
     findAllUsers(){

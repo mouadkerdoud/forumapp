@@ -66,3 +66,7 @@
 .input-field{
   margin-bottom: 15px;
 }
+
+.icon{
+  cursor: pointer;
+}

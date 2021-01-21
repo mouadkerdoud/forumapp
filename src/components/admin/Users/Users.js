@@ -12,6 +12,7 @@ export class Users extends Component {
             errorMessage:"",
             loading:true
         }
+        this.deleteUser = this.deleteUser.bind(this)
     }
 
     componentDidMount(){
@@ -25,6 +26,20 @@ export class Users extends Component {
         })
     }
 
+    deleteUser(userId){
+        let userList=this.state.users
+        let userIndex =  this.state.users.findIndex(user=>user.userId === userId)
+        
+        AdminService.deleteUser(userId)
+            .then(data=>{
+                userList.splice(userIndex,1)
+                this.setState({users:userList})
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+    }
+
     render() {
         return (
             <div className="container" >
@@ -35,6 +50,7 @@ export class Users extends Component {
                 <UserTable
                     tableHeads={["User ID", "First Name", "Last Name", "Username", "Role", "Edit", "Delete"]}
                     users={this.state.users}
+                    deleteUser={this.deleteUser}
                     className="table" 
                  />
             </div >
