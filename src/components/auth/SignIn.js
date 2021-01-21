@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {User} from "../../models/user"
 import UserService from "../../services/user.service"
-import {Redirect} from "react-router-dom"
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';

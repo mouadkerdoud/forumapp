@@ -15,6 +15,10 @@ class AdminService{
         })
     }
 
+    addNewUser(user){
+        return axios.post(API_URL + "add-user", JSON.stringify(user), {headers: this.headers})
+    }
+
     updateUser(user){
         return axios.put(API_URL + "updateUser", JSON.stringify(user), {headers: this.headers})
     }
