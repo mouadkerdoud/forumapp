@@ -70,3 +70,7 @@
 .icon{
   cursor: pointer;
 }
+
+#select{
+  margin-top: 20px;
+}
