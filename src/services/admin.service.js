@@ -27,6 +27,10 @@ class AdminService{
         return axios.delete(API_URL + userId, {headers: this.headers})
     }
 
+    findUserById(userId){
+        return axios.get(API_URL + "findUserById/" + userId, {headers: this.headers})
+    }
+
     findAllUsers(){
         return axios.get(API_URL + "users", {headers: this.headers})
     }

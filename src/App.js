@@ -17,6 +17,7 @@ import Events from "./components/admin/Events/Events"
 import AddEvent from "./components/admin/Events/AddEvent"
 import Users from "./components/admin/Users/Users"
 import AddUser from "./components/admin/Users/AddUser"
+import EditUser from "./components/admin/Users/EditUser"
 
 
 
@@ -46,7 +47,7 @@ function App() {
           <AuthGuard roles={[Role.ADMIN]} path="/addevent"  component={AddEvent} />
           <AuthGuard roles={[Role.ADMIN]} path="/users"  component={Users} />
           <AuthGuard roles={[Role.ADMIN]} path="/adduser"  component={AddUser} />
-
+          <Route path="/edituser/:id"  component={EditUser} />
 
 
           {/* USER */}

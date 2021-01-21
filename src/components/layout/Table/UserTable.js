@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 export default function CustomizedTables(props) {
   const classes = useStyles();
-  const {tableHeads, users, deleteUser} = props
+  const {tableHeads, users, deleteUser, handleEditClick} = props
   
   return (
     <TableContainer component={Paper}>
@@ -61,7 +61,7 @@ export default function CustomizedTables(props) {
               <StyledTableCell >{user.lastName}</StyledTableCell>
               <StyledTableCell >{user.username}</StyledTableCell>
               <StyledTableCell>{user.role}</StyledTableCell>
-              <StyledTableCell ><EditIcon className="icon" /></StyledTableCell>
+              <StyledTableCell ><EditIcon onClick={()=>handleEditClick(user.userId)} className="icon" /></StyledTableCell>
               <StyledTableCell ><DeleteIcon className="icon" onClick={()=>deleteUser(user.userId)}/></StyledTableCell>
             </StyledTableRow>
           ))}

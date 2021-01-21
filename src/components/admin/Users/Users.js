@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import AdminService from "../../../services/admin.service"
 import UserTable from "../../layout/Table/UserTable"
-import {Link} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 
 export class Users extends Component {
     constructor(props){
@@ -13,6 +13,7 @@ export class Users extends Component {
             loading:true
         }
         this.deleteUser = this.deleteUser.bind(this)
+        this.handleEditClick = this.handleEditClick.bind(this)
     }
 
     componentDidMount(){
@@ -24,6 +25,10 @@ export class Users extends Component {
         .catch(error=>{
             console.log(error)
         })
+    }
+
+    handleEditClick(userId){
+        this.props.history.push("/edituser/"+userId)
     }
 
     deleteUser(userId){
@@ -51,6 +56,7 @@ export class Users extends Component {
                     tableHeads={["User ID", "First Name", "Last Name", "Username", "Role", "Edit", "Delete"]}
                     users={this.state.users}
                     deleteUser={this.deleteUser}
+                    handleEditClick={this.handleEditClick}
                     className="table" 
                  />
             </div >
@@ -59,4 +65,4 @@ export class Users extends Component {
     }
 }
 
-export default Users
+export default withRouter(Users)
