@@ -4,6 +4,7 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import EventIcon from '@material-ui/icons/Event';
 import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import GroupIcon from '@material-ui/icons/Group';
 
 export const SidebarData = [
 
@@ -29,6 +30,12 @@ export const SidebarData = [
         title:"Events",
         icon:<EventIcon />,
         link:"/events",
+    },
+
+    {
+        title:"Users",
+        icon:<GroupIcon />,
+        link:"/users",
     },
 
     {

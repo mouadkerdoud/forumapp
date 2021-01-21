@@ -46,22 +46,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
   const classes = useStyles();
-
+  const {tableHeads} = props
+  
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Edit&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Delete&nbsp;</StyledTableCell>
-
+              { tableHeads.map((title, index)=>{
+                  return(
+                    <StyledTableCell key={index}>{title}</StyledTableCell>
+                  )
+              }) }
           </TableRow>
         </TableHead>
         <TableBody>
@@ -70,12 +68,12 @@ export default function CustomizedTables() {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              <StyledTableCell align="right">{row.edit}</StyledTableCell>
-              <StyledTableCell align="right">{row.del}</StyledTableCell>
+              <StyledTableCell>{row.calories}</StyledTableCell>
+              <StyledTableCell >{row.fat}</StyledTableCell>
+              <StyledTableCell >{row.carbs}</StyledTableCell>
+              <StyledTableCell>{row.protein}</StyledTableCell>
+              <StyledTableCell >{row.edit}</StyledTableCell>
+              <StyledTableCell >{row.del}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -83,3 +81,10 @@ export default function CustomizedTables() {
     </TableContainer>
   );
 }
+{/* <StyledTableCell >Dessert</StyledTableCell>
+<StyledTableCell >Calories</StyledTableCell>
+<StyledTableCell >Fat&nbsp;</StyledTableCell>
+<StyledTableCell >Carbs&nbsp;</StyledTableCell>
+<StyledTableCell >Protein&nbsp;</StyledTableCell>
+<StyledTableCell >Edit&nbsp;</StyledTableCell>
+<StyledTableCell >Delete&nbsp;</StyledTableCell> */}
