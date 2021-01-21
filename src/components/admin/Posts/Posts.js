@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from "../../layout/Sidebar/Sidebar"
-import Table from "../../layout/Table/Table"
+import UserTable from "../../layout/Table/UserTable"
 
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const Posts = () => {
             <div className="content">
                 <h1 className="page-title">Posts</h1>
                 <Link to="/addpost"><button className="add-new">Add New</button></Link>
-                <Table className="table" />
+                <UserTable className="table" />
             </div >
         </div>
     )

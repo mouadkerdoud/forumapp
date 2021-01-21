@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import AdminService from "../../../services/admin.service"
-import Table from "../../layout/Table/Table"
+import UserTable from "../../layout/Table/UserTable"
 import {Link} from "react-router-dom"
 
 export class Users extends Component {
     constructor(props){
         super(props)
         this.state={
-            user:[],
+            users:[],
             errorMessage:"",
             loading:true
         }
@@ -32,8 +32,9 @@ export class Users extends Component {
             <div className="content">
                 <h1 className="page-title">Users</h1>
                 <Link to="/adduser"><button className="add-new">Add New</button></Link>
-                <Table
-                    tableHeads={["User ID", "First Name", "Last Name", "Username", "Edit", "Delete"]}
+                <UserTable
+                    tableHeads={["User ID", "First Name", "Last Name", "Username", "Role", "Edit", "Delete"]}
+                    users={this.state.users}
                     className="table" 
                  />
             </div >

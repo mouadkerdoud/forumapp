@@ -28,17 +28,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein, edit, del) {
-  return { name, calories, fat, carbs, protein, edit, del};
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,<EditIcon />, <DeleteIcon />),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3,<EditIcon />,<DeleteIcon />),
-  createData('Eclair', 262, 16.0, 24, 6.0,<EditIcon />,<DeleteIcon />),
-  createData('Cupcake', 305, 3.7, 67, 4.3,<EditIcon />,<DeleteIcon />),
-  createData('Gingerbread', 356, 16.0, 49, 3.9,<EditIcon />,<DeleteIcon />),
-];
 
 const useStyles = makeStyles({
   table: {
@@ -48,7 +37,7 @@ const useStyles = makeStyles({
 
 export default function CustomizedTables(props) {
   const classes = useStyles();
-  const {tableHeads} = props
+  const {tableHeads, users} = props
   
   return (
     <TableContainer component={Paper}>
@@ -63,17 +52,17 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {users.map((user, index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {user.userId}
               </StyledTableCell>
-              <StyledTableCell>{row.calories}</StyledTableCell>
-              <StyledTableCell >{row.fat}</StyledTableCell>
-              <StyledTableCell >{row.carbs}</StyledTableCell>
-              <StyledTableCell>{row.protein}</StyledTableCell>
-              <StyledTableCell >{row.edit}</StyledTableCell>
-              <StyledTableCell >{row.del}</StyledTableCell>
+              <StyledTableCell>{user.firstName}</StyledTableCell>
+              <StyledTableCell >{user.lastName}</StyledTableCell>
+              <StyledTableCell >{user.username}</StyledTableCell>
+              <StyledTableCell>{user.role}</StyledTableCell>
+              <StyledTableCell ><EditIcon/></StyledTableCell>
+              <StyledTableCell ><DeleteIcon/></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -81,10 +70,3 @@ export default function CustomizedTables(props) {
     </TableContainer>
   );
 }
-{/* <StyledTableCell >Dessert</StyledTableCell>
-<StyledTableCell >Calories</StyledTableCell>
-<StyledTableCell >Fat&nbsp;</StyledTableCell>
-<StyledTableCell >Carbs&nbsp;</StyledTableCell>
-<StyledTableCell >Protein&nbsp;</StyledTableCell>
-<StyledTableCell >Edit&nbsp;</StyledTableCell>
-<StyledTableCell >Delete&nbsp;</StyledTableCell> */}
