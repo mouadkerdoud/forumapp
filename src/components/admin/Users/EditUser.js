@@ -29,7 +29,6 @@ class EditUser extends Component {
         super(props)
         this.state={
             userId: this.props.match.params.id,
-            user:[],
             firstName:"",
             lastName:"",
             username:"",
@@ -55,7 +54,12 @@ class EditUser extends Component {
         let userID = this.state.userId
         AdminService.findUserById(userID)
             .then(result=>{
-                this.setState({user:result.data})
+                this.setState({ firstName: result.data.firstName,
+                lastName: result.data.lastName,
+                username: result.data.username,
+                password: result.data.password,
+                role: result.data.role
+              })
             })
             .catch(error=>{
                 console.log(error)
@@ -71,13 +75,13 @@ class EditUser extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        AdminService.addNewUser(this.state)
+        AdminService.updateUser(this.state)
             .then(result=>{
                 this.setState({})
                 this.props.history.push("/users")
             })
             .catch(error=>{
-                console.log(Error)
+                console.log(error)
             })
     }
 
@@ -129,20 +133,6 @@ class EditUser extends Component {
                                 onChange = {e=>this.handleChange(e)}
                             />
     
-                            <TextField
-                                    
-                                    variant="outlined"
-                                    value={this.state.password}
-                                    margin="normal"
-                                    id="standard-password-input"
-                                    required
-                                    label="Password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    autoFocus
-                                    onChange = {e=>this.handleChange(e)}
-                             />
     
                         <FormControl id="select" variant="outlined" >
                             <InputLabel htmlFor="outlined-age-native-simple">Role</InputLabel>
@@ -166,7 +156,7 @@ class EditUser extends Component {
                                 color="primary"
                                 className={classes.submit}
                             >
-                                Add User
+                                Update User
                             </Button>
                         </div>
                     </form>
