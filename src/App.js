@@ -13,6 +13,7 @@ import {Role} from "./models/role"
 import Dashboard from "./components/admin/Dashboard/Dashboard"
 import Posts from "./components/admin/Posts/Posts"
 import AddPost from "./components/admin/Posts/AddPost"
+import EditPost from "./components/admin/Posts/EditPost"
 import Events from "./components/admin/Events/Events"
 import AddEvent from "./components/admin/Events/AddEvent"
 import Users from "./components/admin/Users/Users"
@@ -48,6 +49,7 @@ function App() {
           <AuthGuard roles={[Role.ADMIN]} path="/users"  component={Users} />
           <AuthGuard roles={[Role.ADMIN]} path="/adduser"  component={AddUser} />
           <Route path="/edituser/:id"  component={EditUser} />
+          <Route path="/editpost/:id"  component={EditPost} />
 
 
           {/* USER */}

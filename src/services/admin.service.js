@@ -51,6 +51,11 @@ class AdminService{
         return axios.delete(API_URL + "deletePost/" + postId, {headers: this.headers})
     }
 
+    findPostById(postId){
+        return axios.get(API_URL + "findPostById/" + postId, {headers: this.headers})
+    }
+
+    
     findAllPosts(){
         return axios.get(API_URL + "posts-all", {headers: this.headers})
     }

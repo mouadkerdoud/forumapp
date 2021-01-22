@@ -3,7 +3,7 @@ import Sidebar from "../../layout/Sidebar/Sidebar"
 import PostTable from "../../layout/Table/PostTable"
 import AdminService from "../../../services/admin.service"
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 export class Posts extends Component{
 
@@ -67,4 +67,4 @@ export class Posts extends Component{
 
 }
 
-export default Posts
+export default withRouter(Posts)

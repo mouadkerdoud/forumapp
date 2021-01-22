@@ -7,10 +7,6 @@ import {withRouter} from "react-router-dom"
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -23,17 +19,16 @@ const styles = theme => ({
   })
 
 
-class EditUser extends Component {
+class EditPost extends Component {
 
     constructor(props){
         super(props)
         this.state={
-            userId: this.props.match.params.id,
-            firstName:"",
-            lastName:"",
-            username:"",
-            password:"",
-            role:""
+            postId: this.props.match.params.id,
+            postTitle:"",
+            postShortDescription:"",
+            postLongDescription:"",
+            username: ""
         }
 
         if(!UserService.currentUserValue){
@@ -51,14 +46,14 @@ class EditUser extends Component {
 
     componentDidMount(){
 
-        let userID = this.state.userId
-        AdminService.findUserById(userID)
+        let postId = this.state.postId
+        AdminService.findPostById(postId)
             .then(result=>{
-                this.setState({ firstName: result.data.firstName,
-                lastName: result.data.lastName,
+                this.setState({ 
+                postTitle: result.data.postTitle,
+                postShortDescription: result.data.postShortDescription,
+                postLongDescription: result.data.postLongDescription,
                 username: result.data.username,
-                password: result.data.password,
-                role: result.data.role
               })
             })
             .catch(error=>{
@@ -75,10 +70,10 @@ class EditUser extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        AdminService.updateUser(this.state)
+        AdminService.updatePost(this.state)
             .then(result=>{
                 this.setState({})
-                this.props.history.push("/users")
+                this.props.history.push("/posts")
             })
             .catch(error=>{
                 console.log(error)
@@ -93,37 +88,25 @@ class EditUser extends Component {
             <div className="container" >
                 <Sidebar />
                 <div className="content">
-                    <form onSubmit={e=>this.handleSubmit(e)} >
+                    <form onSubmit={e=>this.handleSubmit(e)}>
                         <div className="element-form">
-                            <h1 className="form-title">Update User</h1>
+                            <h1 className="form-title">Update Post</h1>
                             <TextField
-                                value={this.state.firstName}
+                                value={this.state.postTitle}
                                 variant="outlined"
                                 margin="normal"
                                 required
-                                label="First Name"
-                                name="firstName"
-                                autoComplete="firstName"
+                                label="Post Title"
+                                name="postTitle"
+                                autoComplete="title"
                                 autoFocus
                                 onChange = {e=>this.handleChange(e)}
                             />
+
                             <TextField
-                                variant="outlined"
-                                value={this.state.lastName}
-                                margin="normal"
-                                multiline={true}
-                                label="Last Name"
-                                name="lastName"
-                                autoComplete="lastName"
-                                autoFocus
-                                onChange = {e=>this.handleChange(e)}
-                            />
-    
-                            <TextField
-                                variant="outlined"
                                 value={this.state.username}
+                                variant="outlined"
                                 margin="normal"
-                                multiline={true}
                                 required
                                 label="Username"
                                 name="username"
@@ -131,22 +114,32 @@ class EditUser extends Component {
                                 autoFocus
                                 onChange = {e=>this.handleChange(e)}
                             />
-    
-    
-                        <FormControl id="select" variant="outlined" >
-                            <InputLabel htmlFor="outlined-age-native-simple">Role</InputLabel>
-                            <Select 
-                                value={this.state.role}
-                                required
-                                label="Role"
-                                name="role"
+                            <TextField
+                                value={this.state.postShortDescription}
+                                variant="outlined"
+                                margin="normal"
+                                multiline={true}
+                                rows={3}
+                                label="Short Description"
+                                name="postShortDescription"
+                                autoComplete="title"
+                                autoFocus
                                 onChange = {e=>this.handleChange(e)}
-                            >
-                                <MenuItem value={"ADMIN"}>ADMIN</MenuItem>
-                                <MenuItem value={"USER"}>USER</MenuItem>
-                            </Select>
-                            </FormControl>
+                            />
     
+                            <TextField
+                                value={this.state.postLongDescription}
+                                variant="outlined"
+                                margin="normal"
+                                multiline={true}
+                                rows={5}
+                                required
+                                label="Long Description"
+                                name="postLongDescription"
+                                autoComplete="title"
+                                autoFocus
+                                onChange = {e=>this.handleChange(e)}
+                            />
     
                             <Button
                                 type="submit"
@@ -155,7 +148,7 @@ class EditUser extends Component {
                                 color="primary"
                                 className={classes.submit}
                             >
-                                Update User
+                                Update Post
                             </Button>
                         </div>
                     </form>
@@ -166,4 +159,4 @@ class EditUser extends Component {
     
 }
 
-export default withStyles(styles, { withTheme: true })(withRouter(EditUser));
+export default withStyles(styles, { withTheme: true })(withRouter(EditPost));
