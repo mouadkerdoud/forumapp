@@ -52,7 +52,7 @@ class AddUser extends Component {
                 this.props.history.push("/users")
             })
             .catch(error=>{
-                console.log(Error)
+                console.log(error)
             })
     }
 
