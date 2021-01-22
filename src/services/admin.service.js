@@ -15,6 +15,7 @@ class AdminService{
         })
     }
 
+    //User related methods
     addNewUser(user){
         return axios.post(API_URL + "add-user", JSON.stringify(user), {headers: this.headers})
     }
@@ -33,6 +34,21 @@ class AdminService{
 
     findAllUsers(){
         return axios.get(API_URL + "users", {headers: this.headers})
+    }
+
+
+    //Posts related methods
+
+    addPost(post){
+        return axios.post(API_URL + "createPost", JSON.stringify(post), {headers: this.headers})
+    }
+
+    updatePost(post){
+        return axios.put(API_URL + "updatePost", JSON.stringify(post), {headers: this.headers})
+    }
+
+    deletePost(postId){
+        return axios.delete(API_URL + "deletePost/" + postId, {headers: this.headers})
     }
 
     findAllPosts(){

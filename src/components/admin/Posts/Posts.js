@@ -21,7 +21,6 @@ export class Posts extends Component{
     componentDidMount(){
         AdminService.findAllPosts()
         .then(posts=>{
-            console.log(posts)
             this.setState({posts:posts.data})
         })
         .catch(error=>{
@@ -35,17 +34,17 @@ export class Posts extends Component{
     }
 
     deletePost(postId){
-        // let userList=this.state.users
-        // let userIndex =  this.state.users.findIndex(user=>user.userId === userId)
+        let postList=this.state.posts
+        let postIndex =  this.state.posts.findIndex(post=>post.postId === postId)
         
-        // AdminService.deleteUser(userId)
-        //     .then(data=>{
-        //         userList.splice(userIndex,1)
-        //         this.setState({users:userList})
-        //     })
-        //     .catch(error=>{
-        //         console.log(error)
-        //     })
+        AdminService.deletePost(postId)
+            .then(data=>{
+                postList.splice(postIndex,1)
+                this.setState({posts:postList})
+            })
+            .catch(error=>{
+                console.log(error)
+            })
     }
 
     render(){
