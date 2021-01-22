@@ -2,7 +2,7 @@ import axios from 'axios';
 import UserService from "./user.service"
 
 
-const API_URL = 'http://192.168.1.13:8080/api/admin/';
+const API_URL = 'http://192.168.1.10:8080/api/admin/';
 const headers={}
 
 class AdminService{
@@ -33,6 +33,10 @@ class AdminService{
 
     findAllUsers(){
         return axios.get(API_URL + "users", {headers: this.headers})
+    }
+
+    findAllPosts(){
+        return axios.get(API_URL + "posts-all", {headers: this.headers})
     }
 
 }
