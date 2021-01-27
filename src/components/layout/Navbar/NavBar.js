@@ -1,24 +1,20 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from "react-router-dom"
-
 import SignedOutLinks from "./SignedOutLinks"
+import SignedInLinks from "./SignedInLinks"
+import UserService from "../../../services/user.service"
+
 import "./Navbar.css"
 
-const NavBar = () => {
-    return (
-        <header>
-            <Link to="/" className="logo">FEE</Link>
-            <nav>
-                <ul className="nav-links">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Speakers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>   
-            </nav>
-            
-            <SignedOutLinks />
-        </header>
-    )
-}
 
-export default NavBar
+
+export default class NavBar extends Component {
+    render() {
+        return (
+            <header>
+                <Link  className="logo">FEE</Link>
+                {UserService.currentUserValue ? <SignedInLinks /> : <SignedOutLinks /> }
+            </header>
+        )
+    }
+}

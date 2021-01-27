@@ -13,6 +13,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 25px 10%;
+    overflow: hidden;
 }
 
 .logo{
@@ -45,15 +46,3 @@ header{
     color: #3b1d82;
     font-size: 20px;
 }
-/* button{
-    padding: 9px 25px;
-    background-color: rgba(0,136,169,1);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-
-button:hover{
-    background-color: rgba(0,136,169,0.8);
-} */

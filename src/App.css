@@ -16,6 +16,11 @@
   background: #1a83ff;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
+
 
                                           /* ADMIN PROFILE */
 

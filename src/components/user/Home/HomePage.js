@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
+import FeedPost from "../FeedPost/FeedPost"
 import UserService from "../../../services/user.service"
-import {Redirect} from "react-router-dom"
+import Navbar from "../../layout/Navbar/NavBar"
+
+import "./HomePage.css"
 
 export class HomePage extends Component {
  
     constructor(props){
         super(props)
-
-        if(!UserService.currentUserValue){
-            <Redirect to="/signIn" />
-            return;
-          }
-
           this.state = {
               user: UserService.currentUserValue
           }
@@ -20,9 +17,12 @@ export class HomePage extends Component {
     render() {
         const {user} = this.state
         return (
-            <div>
-                <h1>HELLO {user.firstName} {user.lastName} {user.username} {user.role} {user.userId} </h1>
-            </div>
+            <>
+                <Navbar />
+                <div className="homepage-container">
+                    <FeedPost  />
+                </ div>
+            </>
         )
     }
 }

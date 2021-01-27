@@ -7,6 +7,10 @@ import "./Sidebar.css"
 
 class Sidebar extends Component {
 
+    constructor(props){
+        super(props)
+        this.logout = this.logout.bind(this)
+    }
 
      logout(){
         UserService.logOut()
