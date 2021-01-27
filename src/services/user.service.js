@@ -37,12 +37,12 @@ class UserService {
 
   register(user) {
     return axios.post(API_URL + 'registration', JSON.stringify(user),
-  {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+    {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
 
   findAllPosts() {
     return axios.get(API_URL + "posts",
-  {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+    {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
 
 
