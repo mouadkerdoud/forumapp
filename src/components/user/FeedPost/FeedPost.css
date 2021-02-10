@@ -41,6 +41,7 @@
 
 .post-title{
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .short-desc{

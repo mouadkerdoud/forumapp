@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
 import UserService from "../../../services/user.service"
+import { withRouter } from "react-router-dom";
 
 import avatar from "../../../img/avatar.jpg"
 import postImage from "../../../img/postImage.jpg"
 
 import "./FeedPost.css"
 
-export default class FeedPost extends Component {
+
+class FeedPost extends Component {
 
     constructor(props){
         super(props)
         this.state = {
             posts:[]
         }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(postId){
+        this.props.history.push("/post/"+postId);
     }
 
     componentDidMount(){
@@ -43,7 +50,7 @@ export default class FeedPost extends Component {
                                 </div>
                             </div>
                             
-                            <h2 className="post-title">{post.postTitle}</h2>
+                            <h2 onClick={()=>this.handleClick(post.postId)} className="post-title">{post.postTitle}</h2>
                             <p className="short-desc">{post.postShortDescription}</p>
                             <img alt="postImage" className="post-img" src={postImage} />
                         </div>
@@ -56,3 +63,6 @@ export default class FeedPost extends Component {
         )
     }
 }
+
+
+export default withRouter(FeedPost)

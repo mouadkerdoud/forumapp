@@ -14,6 +14,8 @@ class UserService {
     return currentUserSubject.asObservable();
   }
 
+
+//User related methods
   login(user) {
     //btoa: Basic64 encryption
     const headers = {
@@ -40,10 +42,18 @@ class UserService {
     {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
 
+
+//Posts related methods
+
   findAllPosts() {
     return axios.get(API_URL + "posts",
     {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
+
+  findPostById(postId){
+    return axios.get(API_URL + "findPostById/" + postId, {headers: this.headers})
+}
+
 
 
 }

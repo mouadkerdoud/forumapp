@@ -24,6 +24,7 @@ import EditUser from "./components/admin/Users/EditUser"
 
 //User
 import HomePage from "./components/user/Home/HomePage"
+import PostDetail from "./components/user/PostDetail/PostDetail"
 
 
 
@@ -54,7 +55,7 @@ function App() {
 
           {/* USER */}
           <AuthGuard path="/home" roles={[Role.USER]} component={HomePage} />
-
+          <Route path="/post/:id"  component={PostDetail} />
 
           <Route  path="/404" component={NotFound} />
           <Route  path="/401" component={Unauthorized} />

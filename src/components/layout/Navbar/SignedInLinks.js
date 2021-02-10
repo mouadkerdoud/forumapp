@@ -25,9 +25,9 @@ class SignedInLinks extends Component {
             <>
                 <nav>
                 <ul className="nav-links">
-                    <li><a href="#">Feed</a></li>
-                    <li><a href="#">Something</a></li>
-                    <li><a href="#">Something</a></li>
+                    <li><Link to="/home">Feed</Link></li>
+                    <li><Link to="/home">Something</Link></li>
+                    <li><Link to="/home">Something</Link></li>
                 </ul>   
                 </nav>
                 
