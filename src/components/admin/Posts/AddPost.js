@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {withRouter} from "react-router-dom"
 import AdminService from "../../../services/admin.service"
 import UserService from "../../../services/user.service"
-import userService from '../../../services/user.service';
 
 
 

@@ -28,7 +28,6 @@ export default class FeedPost extends Component {
     render() {
 
         const {posts} = this.state
-        console.log(posts)
         return (
             <>
                 { posts.map( (post,index)=>{
@@ -39,7 +38,7 @@ export default class FeedPost extends Component {
                                 <img alt="avatar" className="user-avatar" src={avatar} />
                                 <div className="head-infos-meta">
                                     <p className="post-author">{post.username}</p>
-                                    <p className="post-date">20 min ago</p>
+                                    <p className="post-date">{post.publishDate}</p>
                                 </div>
                             </div>
                             
