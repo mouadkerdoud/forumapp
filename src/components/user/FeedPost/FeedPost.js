@@ -18,7 +18,7 @@ export default class FeedPost extends Component {
     componentDidMount(){
         UserService.findAllPosts()
             .then(result=>{
-                this.setState({posts:result.data})
+                this.setState({posts:result.data.reverse()})
             })
             .catch(err=>{
                 console.log(err)
@@ -28,6 +28,7 @@ export default class FeedPost extends Component {
     render() {
 
         const {posts} = this.state
+        console.log(posts)
         return (
             <>
                 { posts.map( (post,index)=>{
