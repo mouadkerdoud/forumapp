@@ -1,0 +1,19 @@
+.error-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat";
+    color: rgb(56,56,56);
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.wrapper h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+}
+

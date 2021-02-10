@@ -1,9 +1,13 @@
 import React from 'react'
+import {ReactComponent as Illustration} from '../../img/401.svg';
+
+
+import "./error.css"
 
 const Unauthorized = () => {
     return (
-        <div>
-            <h1>Unauthorized access to this page</h1>
+        <div className="error-container">
+            <Illustration classname="illustration" />
         </div>
     )
 }

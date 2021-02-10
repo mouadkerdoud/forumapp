@@ -1,9 +1,13 @@
 import React from 'react'
+import {ReactComponent as Illustration} from '../../img/404.svg';
+
+
+import "./error.css"
 
 const NotFound = () => {
     return (
-        <div>
-            <h1>Oops we can't seem to find the page you are looking for </h1>
+        <div className="error-container">
+            <Illustration classname="illustration" />
         </div>
     )
 }
