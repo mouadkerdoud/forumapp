@@ -52,7 +52,7 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user, index) => (
+          {users.reverse().map((user, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {user.userId}

@@ -52,7 +52,7 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {posts.map((post, index) => (
+          {posts.reverse().map((post, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {post.postId}

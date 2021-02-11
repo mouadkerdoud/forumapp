@@ -52,7 +52,7 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {events.map((event, index) => (
+          {events.reverse().map((event, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {event.eventId}

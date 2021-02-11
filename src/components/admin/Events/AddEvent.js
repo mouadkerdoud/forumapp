@@ -1,98 +1,141 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import {withRouter} from "react-router-dom"
+import AdminService from "../../../services/admin.service"
 
 
 
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
     submit: {
       margin: theme.spacing(3, 0, 2),
       backgroundColor:  "#1a83ff"
     }
-  }));
+  });
 
+  class AddEvent extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            eventName:"",
+            eventDescription:"",
+            startDate: "",
+            finishDate: ""
+        }
 
-const AddEvent = () => {
-    const classes = useStyles();
-    return (
-        <div className="container" >
-            <Sidebar />
-            <div className="content">
-                <form>
-                    <div className="element-form">
-                        <h1 className="form-title">Add Event</h1>
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
-                        <div className="input-field">
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                fullWidth="true"
-                                required
-                                label="Event Title"
-                                name="title"
-                                autoComplete="title"
-                                autoFocus
-                            />
+    handleChange(e){
+        var {name, value} = e.target
+        if(name === "startDate" || "finishDate") value = value.replace('T', ' ')
+        this.setState({
+          [name]:value
+        })
+      }
+
+      handleSubmit(e){
+        e.preventDefault()
+        AdminService.addEvent(this.state)
+            .then(result=>{
+                this.setState({})
+                this.props.history.push("/events")
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+    }
+
+    render(){
+        const {classes} = this.props;
+        return (
+            <div className="container" >
+                <Sidebar />
+                <div className="content">
+                    <form onSubmit={e=>this.handleSubmit(e)}>
+                        <div className="element-form">
+                            <h1 className="form-title">Add Event</h1>
+    
+                            <div className="input-field">
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    fullWidth="true"
+                                    required
+                                    label="Event Title"
+                                    name="eventName"
+                                    autoComplete="title"
+                                    autoFocus
+                                    onChange = {e=>this.handleChange(e)}
+                                />
+                            </div>
+                            
+                            <div className="input-field">
+                                <TextField
+                                    name="startDate"
+                                    id="datetime-local"
+                                    fullWidth="true"
+                                    label="Starting Date"
+                                    type="datetime-local"
+                                    className={classes.textField}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                    onChange = {e=>this.handleChange(e)}
+                                />
+                             </div>
+    
+                             <div className="input-field">
+                                <TextField
+                                    name="finishDate"
+                                    id="datetime-local"
+                                    fullWidth="true"
+                                    label="Ending Date"
+                                    type="datetime-local"
+                                    className={classes.textField}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                    onChange = {e=>this.handleChange(e)}
+                                />
+                             </div>
+
+    
+                            <div className="input-field">
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    multiline={true}
+                                    fullWidth="true"
+                                    rows={5}
+                                    required
+                                    label="Event Description"
+                                    name="eventDescription"
+                                    autoComplete="title"
+                                    autoFocus
+                                    onChange = {e=>this.handleChange(e)}
+                                />
+                            </div>
+    
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                            >
+                                Add Event
+                            </Button>
                         </div>
-                        
-                        <div className="input-field">
-                            <TextField
-                                id="datetime-local"
-                                fullWidth="true"
-                                label="Date Event"
-                                type="datetime-local"
-                                className={classes.textField}
-                                InputLabelProps={{
-                                shrink: true,
-                                }}
-                            />
-                         </div>
-
-                        <div className="input-field">
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                fullWidth="true"
-                                multiline={true}
-                                rows={3}
-                                label="Short Description"
-                                name="Short Description"
-                                autoComplete="title"
-                                autoFocus
-                            />
-                        </div>
-
-                        <div className="input-field">
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                multiline={true}
-                                fullWidth="true"
-                                rows={5}
-                                required
-                                label="Long Description"
-                                name="long-desc"
-                                autoComplete="title"
-                                autoFocus
-                            />
-                        </div>
-
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Add Event
-                        </Button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+    
 }
 
-export default AddEvent
+export default withStyles(styles, { withTheme: true })(withRouter(AddEvent));
