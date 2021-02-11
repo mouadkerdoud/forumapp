@@ -55,6 +55,19 @@ class UserService {
 }
 
 
+//Events related methods
+
+findAllEvents() {
+  return axios.get(API_URL + "events",
+  {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+}
+
+findEventById(eventId){
+  return axios.get(API_URL + "findEventById/" + eventId, {headers: this.headers})
+}
+
+
+
 
 }
 
