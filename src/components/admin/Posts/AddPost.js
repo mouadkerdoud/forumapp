@@ -9,12 +9,13 @@ import UserService from "../../../services/user.service"
 
 
 
+
 const styles = theme => ({
     submit: {
       margin: theme.spacing(3, 0, 2),
       backgroundColor:  "#1a83ff"
     }
-  });
+  })
 
 
   class AddPost extends Component  {
@@ -25,7 +26,7 @@ const styles = theme => ({
             postTitle:"",
             postShortDescription:"",
             postLongDescription:"",
-            username: UserService.currentUserValue.username
+            user:UserService.currentUserValue
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -52,7 +53,7 @@ const styles = theme => ({
     }
 
     render(){
-        const classes = this.props;
+        const {classes} = this.props;
         return (
             <div className="container" >
                 <Sidebar />

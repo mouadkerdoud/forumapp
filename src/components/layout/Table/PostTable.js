@@ -58,7 +58,8 @@ export default function CustomizedTables(props) {
                 {post.postId}
               </StyledTableCell>
               <StyledTableCell>{post.postTitle}</StyledTableCell>
-              <StyledTableCell>{post.username}</StyledTableCell>
+              <StyledTableCell>{post.user.firstName} {post.user.lastName}</StyledTableCell>
+              <StyledTableCell>{post.publishDate}</StyledTableCell>
               <StyledTableCell ><EditIcon onClick={()=>handleEditClick(post.postId)} className="icon" /></StyledTableCell>
               <StyledTableCell ><DeleteIcon className="icon" onClick={()=>deletePost(post.postId)}/></StyledTableCell>
             </StyledTableRow>

@@ -48,6 +48,7 @@ export class Posts extends Component{
     }
 
     render(){
+        console.log(this.state)
         return (
             <div className="container" >
                 <Sidebar />
@@ -55,7 +56,7 @@ export class Posts extends Component{
                     <h1 className="page-title">Posts</h1>
                     <Link to="/addpost"><button className="add-new">Add New</button></Link>
                     <PostTable 
-                        tableHeads={["Post ID", "Post Title", "Username", "Edit", "Delete"]}
+                        tableHeads={["Post ID", "Post Title", "Author", "Publish Date", "Edit", "Delete"]}
                         posts={this.state.posts}
                         deletePost={this.deletePost}
                         handleEditClick={this.handleEditClick}

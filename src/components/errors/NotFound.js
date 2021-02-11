@@ -7,7 +7,7 @@ import "./error.css"
 const NotFound = () => {
     return (
         <div className="error-container">
-            <Illustration classname="illustration" />
+            <Illustration  />
         </div>
     )
 }

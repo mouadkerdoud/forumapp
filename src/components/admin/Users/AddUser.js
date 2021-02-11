@@ -60,7 +60,6 @@ class AddUser extends Component {
 
     render(){
         const { classes } = this.props;
-        console.log(this.state)
         return (
             <div className="container" >
                 <Sidebar />

@@ -45,7 +45,7 @@ class FeedPost extends Component {
                             <div className="head-infos">
                                 <img alt="avatar" className="user-avatar" src={avatar} />
                                 <div className="head-infos-meta">
-                                    <p className="post-author">{post.username}</p>
+                                    <p className="post-author">{post.user.firstName} {post.user.lastName}</p>
                                     <p className="post-date">{post.publishDate}</p>
                                 </div>
                             </div>

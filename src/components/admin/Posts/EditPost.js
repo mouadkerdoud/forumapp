@@ -53,7 +53,7 @@ class EditPost extends Component {
                 postTitle: result.data.postTitle,
                 postShortDescription: result.data.postShortDescription,
                 postLongDescription: result.data.postLongDescription,
-                username: result.data.username,
+                username: result.data.user.username,
               })
             })
             .catch(error=>{
@@ -103,17 +103,7 @@ class EditPost extends Component {
                                 onChange = {e=>this.handleChange(e)}
                             />
 
-                            <TextField
-                                value={this.state.username}
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                label="Username"
-                                name="username"
-                                autoComplete="username"
-                                autoFocus
-                                onChange = {e=>this.handleChange(e)}
-                            />
+                           
                             <TextField
                                 value={this.state.postShortDescription}
                                 variant="outlined"
