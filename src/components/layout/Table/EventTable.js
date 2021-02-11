@@ -58,8 +58,8 @@ export default function CustomizedTables(props) {
                 {event.eventId}
               </StyledTableCell>
               <StyledTableCell>{event.eventName}</StyledTableCell>
-              <StyledTableCell>{event.startDate}</StyledTableCell>
-              <StyledTableCell>{event.finishDate}</StyledTableCell>
+              <StyledTableCell>{event.startDate.replace("T", " ")}</StyledTableCell>
+              <StyledTableCell>{event.finishDate.replace("T", " ")}</StyledTableCell>
               <StyledTableCell ><EditIcon onClick={()=>handleEditClick(event.eventId)} className="icon" /></StyledTableCell>
               <StyledTableCell ><DeleteIcon className="icon" onClick={()=>deleteEvent(event.eventId)}/></StyledTableCell>
             </StyledTableRow>
