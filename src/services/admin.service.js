@@ -16,6 +16,7 @@ class AdminService{
     }
 
     //User related methods
+    
     addNewUser(user){
         return axios.post(API_URL + "add-user", JSON.stringify(user), {headers: this.headers})
     }
@@ -58,6 +59,30 @@ class AdminService{
     
     findAllPosts(){
         return axios.get(API_URL + "posts-all", {headers: this.headers})
+    }
+
+
+    //Events related methods
+
+    addEvent(event){
+        return axios.post(API_URL + "createEvent", JSON.stringify(event), {headers: this.headers})
+    }
+
+    updateEvent(event){
+        return axios.put(API_URL + "updateEvent", JSON.stringify(event), {headers: this.headers})
+    }
+
+    deleteEvent(eventId){
+        return axios.delete(API_URL + "deleteEvent/" + eventId, {headers: this.headers})
+    }
+
+    findEventById(eventId){
+        return axios.get(API_URL + "findEventById/" + eventId, {headers: this.headers})
+    }
+
+    
+    findAllEvents(){
+        return axios.get(API_URL + "events-all", {headers: this.headers})
     }
 
 }
