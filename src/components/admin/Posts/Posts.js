@@ -5,7 +5,7 @@ import AdminService from "../../../services/admin.service"
 
 import { Link, withRouter } from "react-router-dom";
 
-export class Posts extends Component{
+class Posts extends Component{
 
     constructor(props){
         super(props)

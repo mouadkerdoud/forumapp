@@ -4,7 +4,7 @@ import AdminService from "../../../services/admin.service"
 import UserTable from "../../layout/Table/UserTable"
 import {Link, withRouter} from "react-router-dom"
 
-export class Users extends Component {
+class Users extends Component {
     constructor(props){
         super(props)
         this.state={

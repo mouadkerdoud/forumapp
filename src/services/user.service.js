@@ -67,8 +67,6 @@ findEventById(eventId){
 }
 
 
-
-
 }
 
 export default new UserService();

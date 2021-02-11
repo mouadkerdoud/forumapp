@@ -10,21 +10,27 @@ import AuthGuard from "./guards/AuthGuard"
 import {Role} from "./models/role"
 
 //Admin
-import Dashboard from "./components/admin/Dashboard/Dashboard"
-import Posts from "./components/admin/Posts/Posts"
-import AddPost from "./components/admin/Posts/AddPost"
-import EditPost from "./components/admin/Posts/EditPost"
-import Events from "./components/admin/Events/Events"
-import AddEvent from "./components/admin/Events/AddEvent"
-import Users from "./components/admin/Users/Users"
-import AddUser from "./components/admin/Users/AddUser"
-import EditUser from "./components/admin/Users/EditUser"
+  import Dashboard from "./components/admin/Dashboard/Dashboard"
+
+  //Posts
+  import Posts from "./components/admin/Posts/Posts"
+  import AddPost from "./components/admin/Posts/AddPost"
+  import EditPost from "./components/admin/Posts/EditPost"
+
+  //Events
+  import Events from "./components/admin/Events/Events"
+  import AddEvent from "./components/admin/Events/AddEvent"
+
+  //Users
+  import Users from "./components/admin/Users/Users"
+  import AddUser from "./components/admin/Users/AddUser"
+  import EditUser from "./components/admin/Users/EditUser"
 
 
 
 //User
-import HomePage from "./components/user/Home/HomePage"
-import PostDetail from "./components/user/PostDetail/PostDetail"
+  import HomePage from "./components/user/Home/HomePage"
+  import PostDetail from "./components/user/PostDetail/PostDetail"
 
 
 
