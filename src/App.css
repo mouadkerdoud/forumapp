@@ -78,3 +78,10 @@ html{
 #select{
   margin-top: 20px;
 }
+
+
+.MuiCardHeader-title{
+  color:red;
+  font-weight: bold;
+}
+

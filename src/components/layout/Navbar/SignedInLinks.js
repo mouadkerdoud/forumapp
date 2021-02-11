@@ -22,11 +22,11 @@ class SignedInLinks extends Component {
     
     render() {
         return (
-            <>
+            <>E
                 <nav>
                 <ul className="nav-links">
                     <li><Link to="/home">Feed</Link></li>
-                    <li><Link to="/home">Something</Link></li>
+                    <li><Link to="/coming-events">Events</Link></li>
                     <li><Link to="/home">Something</Link></li>
                 </ul>   
                 </nav>
