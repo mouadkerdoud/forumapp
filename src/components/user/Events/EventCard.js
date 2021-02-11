@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({event}) {
   const classes = useStyles();
-
+  
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -50,8 +50,8 @@ export default function RecipeReviewCard() {
             <img alt="avatar" className="user-avatar" src={avatar} />
           </Avatar>
         }
-        title="September 14, 2016"
-        subheader="Shrimp and Chorizo Paella"
+        title={event.startDate.replace("T", " ")}
+        subheader={event.eventName}
         subheaderTypographyProps={{color:"#333"}}
       />
       <CardMedia
@@ -60,8 +60,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography className={classes.text} variant="body2"  component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                            {event.eventDescription}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

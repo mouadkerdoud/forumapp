@@ -22,7 +22,7 @@ class SignedInLinks extends Component {
     
     render() {
         return (
-            <>E
+            <>
                 <nav>
                 <ul className="nav-links">
                     <li><Link to="/home">Feed</Link></li>

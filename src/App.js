@@ -32,7 +32,7 @@ import {Role} from "./models/role"
 //User
   import HomePage from "./components/user/Home/HomePage"
   import PostDetail from "./components/user/PostDetail/PostDetail"
-  import EventCard from "./components/user/Events/EventCard"
+  import FeedEvents from "./components/user/Events/FeedEvents.js"
 
 
 
@@ -65,7 +65,7 @@ function App() {
           {/* USER */}
           <AuthGuard path="/home" roles={[Role.USER]} component={HomePage} />
           <Route path="/post/:id"  component={PostDetail} />
-          <Route path="/coming-events" component={EventCard} />
+          <AuthGuard path="/coming-events" roles={[Role.USER]} component={FeedEvents} />
 
           <Route  path="/404" component={NotFound} />
           <Route  path="/401" component={Unauthorized} />
