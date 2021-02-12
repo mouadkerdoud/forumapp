@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import EventCard from "./EventCard"
 import UserService from "../../../services/user.service"
-import Navbar from "../../layout/Navbar/NavBar"
 
 import {User} from "../../../models/user"
 import {Attending} from "../../../models/attending"
@@ -16,7 +15,8 @@ export default class FeedEvents extends Component {
             events:[],
             attendings: [],
             errorMessage: "",
-            currentUser: new User()
+            currentUser: new User(),
+            username: UserService.currentUserValue.username
         }
 
         this.attendEvent = this.attendEvent.bind(this)
@@ -87,10 +87,10 @@ export default class FeedEvents extends Component {
     }
 
     isAttended(eventId){
-        const attendedEvents = this.state.attendings
+        const {attendings, username} = this.state
 
-        const attendedEventsByUser = attendedEvents.filter(attendedEvent=>{
-            return attendedEvent.user.username === UserService.currentUserValue.username
+        const attendedEventsByUser = attendings.filter(attendedEvent=>{
+            return attendedEvent.user.username === username
         })
 
        return attendedEventsByUser.some(attendedEventByUser => {
@@ -100,12 +100,9 @@ export default class FeedEvents extends Component {
 
     render() {
         const {events} = this.state
-        console.log(this.state.attendings)
+        console.log(this.state.username)
         if(events){
             return (
-
-                <>
-                <Navbar />
                 <div className="events-container">
                     { events.map((event,index)=>{
                         return (
@@ -119,7 +116,6 @@ export default class FeedEvents extends Component {
                             )
                     })}
                  </div>
-                 </>
             )
         }
 
