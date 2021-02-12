@@ -3,6 +3,9 @@ import EventCard from "./EventCard"
 import UserService from "../../../services/user.service"
 import Navbar from "../../layout/Navbar/NavBar"
 
+import {User} from "../../../models/user"
+import {Attending} from "../../../models/attending"
+
 import "./FeedEvents.css"
 
 export default class FeedEvents extends Component {
@@ -10,11 +13,24 @@ export default class FeedEvents extends Component {
     constructor(props){
         super(props)
         this.state = {
-            events:[]
+            events:[],
+            attendings: [],
+            errorMessage: "",
+            currentUser: new User()
         }
+
+        this.attendEvent = this.attendEvent.bind(this)
+        this.isAttended = this.isAttended.bind(this)
     }
 
     componentDidMount(){
+
+        UserService.currentUser.subscribe(data=>{
+            this.setState({
+                currentUser: data
+            })
+        })
+
         UserService.findAllEvents()
             .then(result=>{
                 this.setState({events:result.data.reverse()})
@@ -22,22 +38,72 @@ export default class FeedEvents extends Component {
             .catch(err=>{
                 console.log(err)
             })
+
+        UserService.findAllAttendings()
+            .then(result=>{
+                this.setState({attendings:result.data})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+
+
+    attendEvent(eventId){
+        const {events} = this.state
+        let chosenEvent={}
+        events.forEach(event=>{
+            if(event.eventId === eventId) chosenEvent = event 
+        })
+        let attending = new Attending(this.state.currentUser, chosenEvent)
+        UserService.attendEvent(attending)
+            .then(data=>{
+                console.log("Success!")
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+    }
+
+    isAttended(eventId){
+        const attendedEvents = this.state.attendings
+
+        const attendedEventsByUser = attendedEvents.filter(attendedEvent=>{
+            return attendedEvent.user.username === UserService.currentUserValue.username
+        })
+
+       return attendedEventsByUser.some(attendedEventByUser => {
+           return attendedEventByUser.event.eventId === eventId
+       })
     }
 
     render() {
-        console.log(this.state)
         const {events} = this.state
-        return (
 
-            <>
-            <Navbar />
-            <div className="events-container">
-                {events.map((event,index)=>{
-                    return <EventCard key={index} event={event} />
+        if(events){
+            return (
 
-                })}
-             </div>
-             </>
-        )
+                <>
+                <Navbar />
+                <div className="events-container">
+                    { events.map((event,index)=>{
+                        return (
+                                <EventCard 
+                                    key={index} 
+                                    event={event} 
+                                    attendEvent={this.attendEvent} 
+                                    isAttended={this.isAttended(event.eventId)} 
+                                />
+                            )
+                    })}
+                 </div>
+                 </>
+            )
+        }
+
+        else{
+            return(<h1>Loading ...</h1>)
+        }
+
     }
 }

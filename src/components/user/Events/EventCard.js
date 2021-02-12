@@ -9,6 +9,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Chip from '@material-ui/core/Chip';
+import CheckIcon from '@material-ui/icons/Check';
+
 
 import avatar from "../../../img/avatar.jpg"
 import postImage from "../../../img/postImage.jpg"
@@ -38,9 +40,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function RecipeReviewCard({event}) {
+export default function RecipeReviewCard({event, attendEvent, isAttended}) {
   const classes = useStyles();
-  
+  console.log(isAttended)
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -52,7 +54,7 @@ export default function RecipeReviewCard({event}) {
         }
         title={event.startDate.replace("T", " ")}
         subheader={event.eventName}
-        subheaderTypographyProps={{color:"#333"}}
+        subheaderTypographyProps={{color:"inherit"}}
       />
       <CardMedia
         className={classes.media}
@@ -67,8 +69,9 @@ export default function RecipeReviewCard({event}) {
             <Chip 
                 className={classes.chip} 
                 clickable 
-                icon={ <StarBorderIcon  className={classes.icon}/>} 
-                label="Attend"  
+                icon={ isAttended ? <CheckIcon className={classes.icon}/> : <StarBorderIcon className={classes.icon}/>} 
+                label= {isAttended ? "Going" : "Attend"} 
+                onClick={()=>attendEvent(event.eventId)} 
             />
       </CardActions>
       

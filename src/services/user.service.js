@@ -67,6 +67,17 @@ findEventById(eventId){
 }
 
 
+attendEvent(attending){
+  return axios.post(API_URL + 'attendEvent', JSON.stringify(attending),
+    {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+}
+
+findAllAttendings(){
+  return axios.get(API_URL + "attendings",
+  {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+}
+
+
 }
 
 export default new UserService();
