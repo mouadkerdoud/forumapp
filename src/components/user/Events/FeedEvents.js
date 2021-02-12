@@ -50,14 +50,18 @@ export default class FeedEvents extends Component {
 
 
     attendEvent(eventId){
+        const attendingsList = this.state.attendings
         const {events} = this.state
         let chosenEvent={}
         events.forEach(event=>{
             if(event.eventId === eventId) chosenEvent = event 
         })
         let attending = new Attending(this.state.currentUser, chosenEvent)
+
         UserService.attendEvent(attending)
             .then(data=>{
+                attendingsList.push(attending)
+                this.setState({attendings: attendingsList })
                 console.log("Success!")
             })
             .catch(error=>{
@@ -79,7 +83,7 @@ export default class FeedEvents extends Component {
 
     render() {
         const {events} = this.state
-
+        console.log(this.state)
         if(events){
             return (
 

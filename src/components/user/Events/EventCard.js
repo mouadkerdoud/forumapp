@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeReviewCard({event, attendEvent, isAttended}) {
   const classes = useStyles();
-  console.log(isAttended)
   return (
     <Card className={classes.root}>
       <CardHeader

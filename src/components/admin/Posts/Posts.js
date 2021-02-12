@@ -48,7 +48,7 @@ class Posts extends Component{
     }
 
     render(){
-        console.log(this.state)
+        console.log(this.state.attendings)
         return (
             <div className="container" >
                 <Sidebar />
