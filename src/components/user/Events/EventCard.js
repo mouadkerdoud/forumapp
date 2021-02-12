@@ -9,8 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Chip from '@material-ui/core/Chip';
-import CheckIcon from '@material-ui/icons/Check';
-
+import CloseIcon from '@material-ui/icons/Close';
 
 import avatar from "../../../img/avatar.jpg"
 import postImage from "../../../img/postImage.jpg"
@@ -32,7 +31,17 @@ const useStyles = makeStyles((theme) => ({
   chip:{
       width: "400px",
       fontSize:"18px",
-      padding: "10px"
+      padding: "10px",
+      backgroundColor: "#ddd",
+      color:"#333"
+  },
+
+  chipCancel:{
+    width: "400px",
+    fontSize:"18px",
+    padding: "10px",
+    backgroundColor: "#ddd",
+    color:"#333"
   },
 
   text:{
@@ -66,10 +75,10 @@ export default function RecipeReviewCard({event, attendEvent, deleteAttending, i
       </CardContent>
       <CardActions disableSpacing>
             <Chip 
-                className={classes.chip} 
+                className={isAttended ? classes.chipCancel : classes.chip} 
                 clickable 
-                icon={ isAttended ? <CheckIcon className={classes.icon}/> : <StarBorderIcon className={classes.icon}/>} 
-                label= {isAttended ? "Going" : "Attend"} 
+                icon={ isAttended ? <CloseIcon style={{ color: "red" }} className={classes.icon}/> : <StarBorderIcon style={{ color: "#333" }} className={classes.icon}/>} 
+                label= {isAttended ? "Cancel attending" : "Attend"} 
                 onClick={isAttended ? ()=>deleteAttending(event.eventId) : ()=>attendEvent(event.eventId)} 
             />
       </CardActions>
