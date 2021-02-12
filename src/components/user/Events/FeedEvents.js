@@ -20,6 +20,7 @@ export default class FeedEvents extends Component {
         }
 
         this.attendEvent = this.attendEvent.bind(this)
+        this.deleteAttending = this.deleteAttending.bind(this)
         this.isAttended = this.isAttended.bind(this)
     }
 
@@ -48,6 +49,22 @@ export default class FeedEvents extends Component {
             })
     }
 
+
+    deleteAttending(eventId){
+        const {attendings, currentUser} = this.state;
+        const attendingId = attendings.filter(attending => attending.event.eventId === eventId && attending.user.userId === currentUser.userId)[0].attendingId
+        const newAttendingList = attendings.filter(attending => attending.attendingId !== attendingId)
+        UserService.deleteAttending(attendingId)
+            .then(result=>{
+                console.log("Deleted")
+                this.setState({
+                    attendings: newAttendingList
+                })
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+    }
 
     attendEvent(eventId){
         const attendingsList = this.state.attendings
@@ -83,7 +100,7 @@ export default class FeedEvents extends Component {
 
     render() {
         const {events} = this.state
-        console.log(this.state)
+        console.log(this.state.attendings)
         if(events){
             return (
 
@@ -96,6 +113,7 @@ export default class FeedEvents extends Component {
                                     key={index} 
                                     event={event} 
                                     attendEvent={this.attendEvent} 
+                                    deleteAttending={this.deleteAttending}
                                     isAttended={this.isAttended(event.eventId)} 
                                 />
                             )

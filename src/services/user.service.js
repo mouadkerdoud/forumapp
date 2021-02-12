@@ -78,6 +78,10 @@ findAllAttendings(){
   {headers: {"Content-Type":"application/json; charset=UTF-8"}});
 }
 
+deleteAttending(attendingId){
+  return axios.delete(API_URL +  "deleteAttending/" +attendingId, {headers: this.headers})
+}
+
 
 }
 

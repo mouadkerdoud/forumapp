@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function RecipeReviewCard({event, attendEvent, isAttended}) {
+export default function RecipeReviewCard({event, attendEvent, deleteAttending, isAttended}) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -70,7 +70,7 @@ export default function RecipeReviewCard({event, attendEvent, isAttended}) {
                 clickable 
                 icon={ isAttended ? <CheckIcon className={classes.icon}/> : <StarBorderIcon className={classes.icon}/>} 
                 label= {isAttended ? "Going" : "Attend"} 
-                onClick={()=>attendEvent(event.eventId)} 
+                onClick={isAttended ? ()=>deleteAttending(event.eventId) : ()=>attendEvent(event.eventId)} 
             />
       </CardActions>
       
