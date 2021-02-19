@@ -27,7 +27,7 @@ class SignedInLinks extends Component {
                 <ul className="nav-links">
                     <li><Link to="/home">Feed</Link></li>
                     <li><Link to="/coming-events">Events</Link></li>
-                    <li><Link to="/home">Something</Link></li>
+                    <li><Link to="/profile">Profile</Link></li>
                 </ul>   
                 </nav>
                 
