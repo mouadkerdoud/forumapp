@@ -34,6 +34,7 @@ import {Role} from "./models/role"
   import PostDetail from "./components/user/PostDetail/PostDetail"
   import EventPage from "./components/user/Events/EventPage"
   import UserProfile from "./components/user/Profile/UserProfile"
+  import UpdateProfile from "./components/user/Profile/UpdateProfile"
 
 
 
@@ -68,6 +69,7 @@ function App() {
           <AuthGuard path="/profile" roles={[Role.USER]} component={UserProfile} />
           <Route path="/post/:id"  component={PostDetail} />
           <AuthGuard path="/coming-events" roles={[Role.USER]} component={EventPage} />
+          <Route path="/update-profile/:id"  component={UpdateProfile} />
 
           <Route  path="/404" component={NotFound} />
           <Route  path="/401" component={Unauthorized} />

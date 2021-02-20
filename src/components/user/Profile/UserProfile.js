@@ -2,28 +2,35 @@ import React, { Component } from 'react'
 import UserService from "../../../services/user.service"
 import CloseIcon from '@material-ui/icons/Close';
 import Navbar from "../../layout/Navbar/NavBar"
-
+import {withRouter} from "react-router-dom"
 
 import "./Profile.css"
 
-export default class UserProfile extends Component {
+class UserProfile extends Component {
 
     constructor(props){
 
         super(props)
         this.state = {
-            user: UserService.currentUserValue,
+            user: "",
             attendings: [],
             image: ""
         }
 
         this.findUserAttendings = this.findUserAttendings.bind(this)
         this.deleteAttending = this.deleteAttending.bind(this)
+        this.handleEditProfileClick= this.handleEditProfileClick.bind(this)
     }
 
     componentDidMount(){
-        let {user} = this.state
-        UserService.findDocByUserId(user.userId)
+        UserService.findUserById(UserService.currentUserValue.userId)
+            .then(result=>{
+                this.setState({
+                    user: result.data
+                })
+            })
+
+        UserService.findDocByUserId(UserService.currentUserValue.userId)
             .then(result=>{
                 this.setState({
                     image: result.data
@@ -67,10 +74,15 @@ export default class UserProfile extends Component {
             })
     }
 
+
+    handleEditProfileClick(){
+        this.props.history.push("/update-profile/"+this.state.user.userId)
+    }
+
     
     render() {
 
-        const {user, attendings, image} = this.state
+        const {user, image} = this.state
         const userAttendings = this.findUserAttendings()
         
         console.log(userAttendings)
@@ -82,14 +94,19 @@ export default class UserProfile extends Component {
                 <Navbar />
                 <div className="profile-container">
                         <div className="user-infos">    
-                            <img src={"data:image/png;base64,"+image.data} className="profile-img"/>
+                            <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/>
 
                             <div className="user-cred">
                                 <h1 className="profile-name">{user.firstName} {user.lastName}</h1>
                                 <p className="profile-username">{user.username}</p>
                             </div>
 
-                            <button className="edit-profile">Edit Profile</button>
+                            <button
+                              onClick={this.handleEditProfileClick}
+                              className="edit-profile"
+                             >
+                                 Edit Profile
+                            </button>
 
                         </div>
 
@@ -117,3 +134,5 @@ export default class UserProfile extends Component {
         )
     }
 }
+
+export default withRouter(UserProfile)

@@ -43,6 +43,18 @@ class UserService {
   }
 
 
+  updateUser(user){
+    return axios.put(API_URL + "updateProfile", JSON.stringify(user), {headers: {"Content-Type":"application/json; charset=UTF-8"}})
+
+  }
+
+  findUserById(userId){
+    return axios.get(API_URL + "findUserById/" + userId, {headers: this.headers})
+  }
+
+
+
+
 //Documents
 
   uploadUserFiles(files, userID){
