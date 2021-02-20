@@ -96,6 +96,7 @@ class UserProfile extends Component {
                         <div className="user-infos">    
                             <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/>
 
+                            
                             <div className="user-cred">
                                 <h1 className="profile-name">{user.firstName} {user.lastName}</h1>
                                 <p className="profile-username">{user.username}</p>

@@ -5,6 +5,7 @@ import {withRouter} from "react-router-dom"
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import CreateIcon from '@material-ui/icons/Create';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -30,7 +31,9 @@ class UpdateProfile extends Component {
             lastName:"",
             username:"",
             password:"",
-            role:""
+            role:"",
+            image: "",
+            file:""
         }
 
         if(!UserService.currentUserValue){
@@ -43,6 +46,7 @@ class UpdateProfile extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.onFileChange = this.onFileChange.bind(this)
 
     }
 
@@ -61,6 +65,14 @@ class UpdateProfile extends Component {
             .catch(error=>{
                 console.log(error)
             })
+
+
+            UserService.findDocByUserId(UserService.currentUserValue.userId)
+            .then(result=>{
+                this.setState({
+                    image: result.data
+                })
+            })
     }
 
     handleChange(e){
@@ -70,12 +82,28 @@ class UpdateProfile extends Component {
         })
       }
 
+      
+    onFileChange(e){
+        this.setState({
+            file: e.target.files[0]
+        })
+    }
+
     handleSubmit(e){
         e.preventDefault()
-        UserService.updateUser(this.state)
+        let {file, userId} = this.state
+        let user = this.state
+        
+        delete user["file"]
+        delete user["image"]
+
+
+        UserService.updateUser(user)
             .then(result=>{
-                this.setState({})
-                this.props.history.push("/profile")
+                UserService.updateUserFile(file, userId)
+                    .then(result=>{
+                        this.props.history.push("/profile")
+                    })
             })
             .catch(error=>{
                 console.log(error)
@@ -85,8 +113,8 @@ class UpdateProfile extends Component {
  
 
     render(){
-        const { classes } = this.props;
-        console.log(this.state)
+        const { classes } = this.props
+        const {image} = this.state
         return (
             <>
             <Navbar />
@@ -95,6 +123,13 @@ class UpdateProfile extends Component {
                     <form onSubmit={e=>this.handleSubmit(e)} >
                         <div className="element-form">
                             <h1 className="form-title">Update Profile</h1>
+
+                            <img alt="" src={"data:image/png;base64,"+image.data} className="edit-profile-img"/>
+                            <CreateIcon className="change-img" />
+
+
+                            <input type="file" onChange={this.onFileChange} />
+
                             <TextField
                                 value={this.state.firstName}
                                 variant="outlined"

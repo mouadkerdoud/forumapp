@@ -69,3 +69,21 @@
 .profile-icon{
     cursor: pointer;
 }
+
+
+
+.edit-profile-img{
+    border-radius: 50%;
+    width: 250px;
+    height: 230px;
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+
+.change-img{
+    cursor: pointer;
+    position: relative;
+    left:380px;
+    bottom: 200px;
+}
