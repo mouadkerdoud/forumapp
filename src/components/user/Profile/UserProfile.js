@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserService from "../../../services/user.service"
-
+import CloseIcon from '@material-ui/icons/Close';
 import Navbar from "../../layout/Navbar/NavBar"
 
 
@@ -18,6 +18,7 @@ export default class UserProfile extends Component {
         }
 
         this.findUserAttendings = this.findUserAttendings.bind(this)
+        this.deleteAttending = this.deleteAttending.bind(this)
     }
 
     componentDidMount(){
@@ -50,6 +51,23 @@ export default class UserProfile extends Component {
         return attendedEventsByUser
     }
 
+    deleteAttending(eventId){
+        const {attendings, user} = this.state;
+        const attendingId = attendings.filter(attending => attending.event.eventId === eventId && attending.user.userId === user.userId)[0].attendingId
+        const newAttendingList = attendings.filter(attending => attending.attendingId !== attendingId)
+        UserService.deleteAttending(attendingId)
+            .then(result=>{
+                console.log("Deleted")
+                this.setState({
+                    attendings: newAttendingList
+                })
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+    }
+
+    
     render() {
 
         const {user, attendings, image} = this.state
@@ -82,6 +100,10 @@ export default class UserProfile extends Component {
                                         return (
                                             <div className="profile-event">
                                                 <p className="profile-event-name">{attending.event.eventName}</p>
+                                                <CloseIcon
+                                                    onClick={()=>this.deleteAttending(attending.event.eventId)}
+                                                    className="profile-icon"
+                                                  />
                                             </div>
                                             
                                         )
