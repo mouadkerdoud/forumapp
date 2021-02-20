@@ -12,7 +12,7 @@ import Chip from '@material-ui/core/Chip';
 import CloseIcon from '@material-ui/icons/Close';
 
 import avatar from "../../../img/avatar.jpg"
-import postImage from "../../../img/postImage.jpg"
+import postImage from "../../../img/event.jpg"
 
 
 const useStyles = makeStyles((theme) => ({

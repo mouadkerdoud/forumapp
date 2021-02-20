@@ -13,7 +13,6 @@ export default class Profile extends Component {
 
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onChange = this.onChange.bind(this)
-        this.downloadFile = this.downloadFile.bind(this)
 
     }
 
@@ -28,22 +27,11 @@ export default class Profile extends Component {
     }
 
 
-    downloadFile(docId){
-
-        UserService.downloadFile(docId)
-        .then(result=>{
-            console.log(result.data)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }
-
     onFormSubmit(e){ 
        e.preventDefault()
        let {file, userId} = this.state
        
-       UserService.uploadFiles(file, userId )
+       UserService.uploadUserFiles(file, userId )
         .then(result=>{
             console.log(result.data)
         })

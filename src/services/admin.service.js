@@ -2,7 +2,7 @@ import axios from 'axios';
 import UserService from "./user.service"
 
 
-const API_URL = 'http://192.168.1.14:8080/api/admin/';
+const API_URL = 'http://192.168.1.11:8080/api/admin/';
 const headers={}
 
 class AdminService{
@@ -37,6 +37,28 @@ class AdminService{
         return axios.get(API_URL + "users", {headers: this.headers})
     }
 
+
+
+
+    //Docs related methods
+
+
+    uploadUserFiles(files, userID){
+        let formData = new FormData()
+        
+        formData.append("files", files)
+        formData.append("userId", userID)
+    
+        return axios.post(API_URL + "uploadUserDoc", formData, {headers: {"Content-Type":"multipart/form-data"}} )
+      }
+
+      findDocByUserId(userId){
+        return axios.get(API_URL + "findDocByUserId/" + userId) 
+      }
+
+      getAllfiles(){
+        return axios.get(API_URL + "cvs");
+     }
 
     //Posts related methods
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {BehaviorSubject} from 'rxjs';
 
-const API_URL = 'http://192.168.1.14:8080/api/user/';
+const API_URL = 'http://192.168.1.11:8080/api/user/';
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 class UserService {
@@ -45,22 +45,21 @@ class UserService {
 
 //Documents
 
-  uploadFiles(files, userID){
+  uploadUserFiles(files, userID){
     let formData = new FormData()
     
     formData.append("files", files)
     formData.append("userId", userID)
 
-    return axios.post(API_URL + "uploadCv", formData, {headers: {"Content-Type":"multipart/form-data"}} )
+    return axios.post(API_URL + "uploadUserDoc", formData, {headers: {"Content-Type":"multipart/form-data"}} )
   }
 
   getAllfiles(){
      return axios.get(API_URL + "cvs");
   }
 
-
-  downloadFile(fileId){
-     return axios.get(API_URL + "downloadFile/" + fileId)
+  findDocByUserId(userId){
+    return axios.get(API_URL + "findDocByUserId/" + userId) 
   }
 
 //Posts related methods
