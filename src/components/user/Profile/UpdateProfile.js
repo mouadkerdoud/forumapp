@@ -33,7 +33,7 @@ class UpdateProfile extends Component {
             password:"",
             role:"",
             image: "",
-            file:""
+            file:null
         }
 
         if(!UserService.currentUserValue){
@@ -113,8 +113,12 @@ class UpdateProfile extends Component {
  
 
     render(){
+
         const { classes } = this.props
         const {image} = this.state
+        const fileInput = React.createRef(null)
+
+
         return (
             <>
             <Navbar />
@@ -125,10 +129,19 @@ class UpdateProfile extends Component {
                             <h1 className="form-title">Update Profile</h1>
 
                             <img alt="" src={"data:image/png;base64,"+image.data} className="edit-profile-img"/>
-                            <CreateIcon className="change-img" />
+                            
+                            <CreateIcon
+                                onClick={()=>fileInput.current.click()}
+                                className="change-img" 
+                            />
 
 
-                            <input type="file" onChange={this.onFileChange} />
+                            <input 
+                                ref={fileInput} 
+                                type="file" 
+                                onChange={this.onFileChange} 
+                                style={{display:"none"}}
+                            />
 
                             <TextField
                                 value={this.state.firstName}
