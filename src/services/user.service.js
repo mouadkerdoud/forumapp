@@ -55,7 +55,7 @@ class UserService {
   }
 
   getAllfiles(){
-     return axios.get(API_URL + "cvs");
+     return axios.get(API_URL + "docs");
   }
 
   findDocByUserId(userId){

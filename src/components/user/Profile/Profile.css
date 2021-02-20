@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+.profile-container{
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 50px;
+}
+
+
+.user-infos{
+    margin-left: 80px;
+}
+
+.profile-img{
+    border-radius: 50%;
+    width: 320px;
+    height: 280px;
+    display: block;
+    margin-bottom: 18px
+}
+
+.user-cred{
+    padding-left: 10px;
+
+}
+
+.profile-username{
+    font-size: 20px;
+}
+
+
+.profile-user-attendings-section{
+    margin-left: 180px;
+    width: 100%
+}
+
+
+.profile-user-attendings{
+    display: flex;
+    flex-direction : column;
+    margin-top: 30px;
+}
+
+.profile-event{
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 600px;
+    padding: 40px;
+    margin-bottom: 20px;
+}
+
+
+.edit-profile{
+  background: #060b26;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  width: 300px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0,0, 0, 0.12) 0px 3px 1px -2px;
+  margin-top: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
