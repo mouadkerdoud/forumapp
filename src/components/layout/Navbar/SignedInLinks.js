@@ -21,13 +21,14 @@ class SignedInLinks extends Component {
     }   
     
     render() {
+        const {user} = this.props
         return (
             <>
                 <nav>
                 <ul className="nav-links">
+                    <li><Link to="/profile">{user.firstName} {user.lastName} </Link></li>
                     <li><Link to="/home">Feed</Link></li>
                     <li><Link to="/coming-events">Events</Link></li>
-                    <li><Link to="/profile">Profile</Link></li>
                 </ul>   
                 </nav>
                 

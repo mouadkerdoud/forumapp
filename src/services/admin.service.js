@@ -2,7 +2,7 @@ import axios from 'axios';
 import UserService from "./user.service"
 
 
-const API_URL = 'http://192.168.1.11:8080/api/admin/';
+const API_URL = 'http://192.168.1.10:8080/api/admin/';
 const headers={}
 
 class AdminService{

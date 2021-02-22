@@ -100,10 +100,15 @@ class UpdateProfile extends Component {
 
         UserService.updateUser(user)
             .then(result=>{
-                UserService.updateUserFile(file, userId)
+
+                if(file){
+                    UserService.updateUserFile(file, userId)
                     .then(result=>{
                         this.props.history.push("/profile")
                     })
+                }
+                else this.props.history.push("/profile")
+                
             })
             .catch(error=>{
                 console.log(error)
@@ -128,6 +133,7 @@ class UpdateProfile extends Component {
                         <div className="element-form">
                             <h1 className="form-title">Update Profile</h1>
 
+                            
                             <img alt="" src={"data:image/png;base64,"+image.data} className="edit-profile-img"/>
                             
                             <CreateIcon

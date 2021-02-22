@@ -16,7 +16,7 @@ export default class FeedEvents extends Component {
             attendings: [],
             errorMessage: "",
             currentUser: new User(),
-            username: UserService.currentUserValue.username
+            username: ""
         }
 
         this.attendEvent = this.attendEvent.bind(this)
@@ -26,11 +26,13 @@ export default class FeedEvents extends Component {
 
     componentDidMount(){
 
-        UserService.currentUser.subscribe(data=>{
-            this.setState({
-                currentUser: data
+        UserService.findUserById(UserService.currentUserValue.userId)
+            .then(result=>{
+                this.setState({
+                    currentUser: result.data,
+                    username: result.data.username
+                })
             })
-        })
 
         UserService.findAllEvents()
             .then(result=>{

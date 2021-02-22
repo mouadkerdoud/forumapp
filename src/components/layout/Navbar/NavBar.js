@@ -9,11 +9,30 @@ import "./Navbar.css"
 
 
 export default class NavBar extends Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            user : "" 
+        }
+    }
+
+    componentDidMount(){
+        UserService.findUserById(UserService.currentUserValue.userId)
+            .then(result=>{
+                this.setState({
+                    user : result.data
+                })
+            })
+    }
+
     render() {
+        const {user} = this.state
+        
         return (
             <header>
                 <Link  className="logo">FEE</Link>
-                {UserService.currentUserValue ? <SignedInLinks /> : <SignedOutLinks /> }
+                {UserService.currentUserValue ? <SignedInLinks user={user}  /> : <SignedOutLinks /> }
             </header>
         )
     }
