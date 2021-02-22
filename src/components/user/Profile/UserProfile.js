@@ -3,6 +3,7 @@ import UserService from "../../../services/user.service"
 import CloseIcon from '@material-ui/icons/Close';
 import Navbar from "../../layout/Navbar/NavBar"
 import {withRouter} from "react-router-dom"
+import Spinner from "../../layout/Spinner/Spinner"
 
 import "./Profile.css"
 
@@ -14,7 +15,7 @@ class UserProfile extends Component {
         this.state = {
             user: "",
             attendings: [],
-            image: ""
+            image: null
         }
 
         this.findUserAttendings = this.findUserAttendings.bind(this)
@@ -85,54 +86,63 @@ class UserProfile extends Component {
         const {user, image} = this.state
         const userAttendings = this.findUserAttendings()
         
-        console.log(userAttendings)
+        if(image){
+            return (
 
-        return (
-
-            <>
-
-                <Navbar />
-                <div className="profile-container">
-                        <div className="user-infos">    
-                            <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/>
-
-                            
-                            <div className="user-cred">
-                                <h1 className="profile-name">{user.firstName} {user.lastName}</h1>
-                                <p className="profile-username">{user.username}</p>
-                            </div>
-
-                            <button
-                              onClick={this.handleEditProfileClick}
-                              className="edit-profile"
-                             >
-                                 Edit Profile
-                            </button>
-
-                        </div>
-
-                         <div className="profile-user-attendings-section">
-                            <h2>Events Attendings</h2>
-                                <div className="profile-user-attendings">
-                                    {userAttendings && userAttendings.map(attending=>{
-                                        return (
-                                            <div className="profile-event">
-                                                <p className="profile-event-name">{attending.event.eventName}</p>
-                                                <CloseIcon
-                                                    onClick={()=>this.deleteAttending(attending.event.eventId)}
-                                                    className="profile-icon"
-                                                  />
-                                            </div>
-                                            
-                                        )
-                                    })}
+                <>
+    
+                    <Navbar />
+                    <div className="profile-container">
+                            <div className="user-infos">    
+                                <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/>
+    
+                                
+                                <div className="user-cred">
+                                    <h1 className="profile-name">{user.firstName} {user.lastName}</h1>
+                                    <p className="profile-username">{user.username}</p>
                                 </div>
-                        </div>
+    
+                                <button
+                                  onClick={this.handleEditProfileClick}
+                                  className="edit-profile"
+                                 >
+                                     Edit Profile
+                                </button>
+    
+                            </div>
+    
+                             <div className="profile-user-attendings-section">
+                                <h2>Events Attendings</h2>
+                                    <div className="profile-user-attendings">
+                                        {userAttendings && userAttendings.map(attending=>{
+                                            return (
+                                                <div className="profile-event">
+                                                    <p className="profile-event-name">{attending.event.eventName}</p>
+                                                    <CloseIcon
+                                                        onClick={()=>this.deleteAttending(attending.event.eventId)}
+                                                        className="profile-icon"
+                                                      />
+                                                </div>
+                                                
+                                            )
+                                        })}
+                                    </div>
+                            </div>
+                    </div>
+    
+                   
+                </>
+            )
+        }
+        else{
+            return (
+                <div className="user-content-spinner">
+                    <Spinner />
                 </div>
+            )
+        }
 
-               
-            </>
-        )
+
     }
 }
 
