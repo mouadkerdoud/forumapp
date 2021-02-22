@@ -63,7 +63,7 @@ class AddUser extends Component {
         return (
             <div className="container" >
                 <Sidebar />
-                <div className="content">
+                <div className="content add-content">
                     <form onSubmit={e=>this.handleSubmit(e)} >
                         <div className="element-form">
                             <h1 className="form-title">Add User</h1>

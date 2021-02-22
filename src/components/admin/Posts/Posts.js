@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import PostTable from "../../layout/Table/PostTable"
 import AdminService from "../../../services/admin.service"
+import Spinner from "../../layout/Spinner/Spinner"
 
 import { Link, withRouter } from "react-router-dom";
 
@@ -10,9 +11,8 @@ class Posts extends Component{
     constructor(props){
         super(props)
         this.state={
-            posts:[],
+            posts:null,
             errorMessage:"",
-            loading:true
         }
         this.deletePost = this.deletePost.bind(this)
         this.handleEditClick = this.handleEditClick.bind(this)
@@ -48,24 +48,40 @@ class Posts extends Component{
     }
 
     render(){
-        console.log(this.state.attendings)
-        return (
-            <div className="container" >
-                <Sidebar />
-                <div className="content">
-                    <h1 className="page-title">Posts</h1>
-                    <Link to="/addpost"><button className="add-new">Add New</button></Link>
-                    <PostTable 
-                        tableHeads={["Post ID", "Post Title", "Author", "Publish Date", "Edit", "Delete"]}
-                        posts={this.state.posts}
-                        deletePost={this.deletePost}
-                        handleEditClick={this.handleEditClick}
-                        className="table" />
-                </div >
-            </div>
-        )
+        const {posts} = this.state
+
+        if(posts){
+            return (
+                <div className="container" >
+                    <Sidebar />
+                    <div className="content">
+                        <h1 className="page-title">Posts</h1>
+                        <Link to="/addpost"><button className="add-new">Add New</button></Link>
+                        <PostTable 
+                            tableHeads={["Post ID", "Post Title", "Author", "Publish Date", "Edit", "Delete"]}
+                            posts={this.state.posts}
+                            deletePost={this.deletePost}
+                            handleEditClick={this.handleEditClick}
+                            className="table" />
+                    </div >
+                </div>
+            )
+        }
+        else{
+            return (
+                <div className="container" >
+                    <Sidebar />
+                    <div className="content">
+                        <Spinner />
+                    </div>
+                </div>
+            )
+        }
+        
     }
 
 }
+
+
 
 export default withRouter(Posts)
