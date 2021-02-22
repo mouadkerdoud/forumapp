@@ -1,5 +1,6 @@
 .sidebar{
     height: 100vh;
+    position: fixed;
     width: 200px;
     background-color: #060b26;
 }
@@ -7,7 +8,7 @@
 .sidebar-list-container{
     height:auto;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 30px;
 }
 
 .list-row{
@@ -17,6 +18,7 @@
     align-items: center;
     padding: 13px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 10px;
 }
 
 .list-row:hover{

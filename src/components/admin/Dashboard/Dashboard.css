@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+
+.dashboard-content{
+    margin-left: 250px;
+    margin-top: 50px;
+    font-family: "Montserrat", sans-serif;
+    width: 1110px;
+
+}
+
+.dashboard-title{
+    font-size: 40px;
+}
+
+.bar{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0,0, 0, 0.12) 0px 3px 1px -2px;
+    background: #1a83ff;
+    padding: 15px;
+    width: 95%;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+
+.stat-overview{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin-bottom: 40px;
+}
+
+.overview{
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0,0, 0, 0.12) 0px 3px 1px -2px;
+    padding: 60px;
+    width: 200px;
+}
+
+.top-elements{
+    display: flex;
+    justify-content: space-between;
+    width: 12.5rem;
+    position: relative;
+    bottom: 1.8rem;
+    font-size: 35px;
+}
+
+
+.dashboard-icon{
+    font-size: 40px ;
+}
+
+.stat-title{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.users{
+    color: #E53935;
+}
+
+.posts{
+    color: #3949AB;
+}
+
+.events{
+    color: #43A047;
+
+}
+
+.attendings-table{
+    margin-top: 20px;
+    width: 98%  !important;
+}
