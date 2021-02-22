@@ -3,7 +3,7 @@ import AdminService from "../../../services/admin.service"
 
 import Sidebar from "../../layout/Sidebar/Sidebar"
 import Chart from "./Chart/Chart"
-
+import AttendingTable from "../../layout/Table/AttendingTable"
 
 import "./Dashboard.css"
 
@@ -16,8 +16,10 @@ export default class Dashboard extends Component {
             postsNumber: "",
             eventsNumber: "",
             attendingsNumber: "",
-            events: ""
+            attendings: ""
     }
+
+    this.deleteAttending = this.deleteAttending.bind(this)
 
 
 }
@@ -76,10 +78,10 @@ export default class Dashboard extends Component {
             })
 
         
-        AdminService.findAllEvents()
+        AdminService.findAllAttendings()
             .then(result=>{
                 this.setState({
-                    events: result.data
+                    attendings: result.data.reverse()
                 })
             })
             .catch(error=>{
@@ -90,10 +92,26 @@ export default class Dashboard extends Component {
     }
 
 
+    deleteAttending(attendingId){
+        const {attendings} = this.state
+        const newAttendingList = attendings.filter(attending => attending.attendingId !== attendingId)
+        AdminService.deleteAttending(attendingId)
+            .then(result=>{
+                console.log("Deleted")
+                this.setState({
+                    attendings: newAttendingList
+                })
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+    }
+
+
 
     render() {
 
-        const {eventsNumber, usersNumber, postsNumber, attendingsNumber} = this.state
+        const {eventsNumber, usersNumber, postsNumber, attendingsNumber, attendings} = this.state
 
         console.log(this.state)
 
@@ -143,7 +161,14 @@ export default class Dashboard extends Component {
                         usersNumber={usersNumber}
                         attendingsNumber={attendingsNumber}
                     />
-                    
+
+                <div className="bar">Events Attendings</div>
+                
+                <AttendingTable
+                    tableHeads={["Attending ID", "Event Name", "User", "Delete"]}
+                    attendings={attendings}
+                    deleteAttending={this.deleteAttending}
+                 />
 
                 </div>
             </div>

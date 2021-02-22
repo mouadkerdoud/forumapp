@@ -120,6 +120,19 @@ class AdminService{
         return axios.get(API_URL + "events-number", {headers: this.headers})
     }
 
+
+
+    //Attendings methods
+
+    findAllAttendings(){
+        return axios.get(API_URL + "attendings", {headers: this.headers} )
+    }
+      
+      deleteAttending(attendingId){
+        return axios.delete(API_URL +  "deleteAttending/" +attendingId, {headers: this.headers})
+      }
+
+      
     numberOfAttendings(){
         return axios.get(API_URL + "attendings-number",  {headers: this.headers})
     }

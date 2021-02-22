@@ -30,6 +30,7 @@
     display: flex;
     justify-content: space-between;
     width: 95%;
+    margin-bottom: 40px;
 }
 
 .overview{
@@ -70,4 +71,9 @@
 .events{
     color: #43A047;
 
+}
+
+.attendings-table{
+    margin-top: 20px;
+    width: 98%  !important;
 }
