@@ -85,12 +85,14 @@ const styles = theme => ({
                                     shrink: true,
                                     }}
                                     onChange = {e=>this.handleChange(e)}
+                                    required
                                 />
                              </div>
     
                              <div className="input-field">
                                 <TextField
                                     name="finishDate"
+                                    required
                                     id="datetime-local"
                                     fullWidth="true"
                                     label="Ending Date"

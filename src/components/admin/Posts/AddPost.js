@@ -74,6 +74,7 @@ const styles = theme => ({
                             />
                             <TextField
                                 value={this.state.postShortDescription}
+                                required
                                 variant="outlined"
                                 margin="normal"
                                 multiline={true}

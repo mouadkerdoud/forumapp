@@ -106,6 +106,7 @@ class EditPost extends Component {
                            
                             <TextField
                                 value={this.state.postShortDescription}
+                                required
                                 variant="outlined"
                                 margin="normal"
                                 multiline={true}

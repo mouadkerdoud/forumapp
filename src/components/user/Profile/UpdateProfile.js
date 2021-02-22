@@ -170,6 +170,7 @@ class UpdateProfile extends Component {
                                 autoComplete="lastName"
                                 autoFocus
                                 onChange = {e=>this.handleChange(e)}
+                                required
                             />
     
                             <TextField

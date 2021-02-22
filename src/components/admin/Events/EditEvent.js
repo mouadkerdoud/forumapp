@@ -115,6 +115,7 @@ const styles = theme => ({
                                     InputLabelProps={{
                                     shrink: true,
                                     }}
+                                    required
                                     onChange = {e=>this.handleChange(e)}
                                 />
                              </div>
@@ -131,6 +132,7 @@ const styles = theme => ({
                                     InputLabelProps={{
                                     shrink: true,
                                     }}
+                                    required
                                     onChange = {e=>this.handleChange(e)}
                                 />
                              </div>
