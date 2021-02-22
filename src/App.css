@@ -21,6 +21,12 @@
 html{
   scroll-behavior: smooth;
 }
+
+.error-message{
+  color: red;
+  font-size: 20px;
+  margin-top: 20px;
+}
                                     /* ADMIN PROFILE */
 
 .container{

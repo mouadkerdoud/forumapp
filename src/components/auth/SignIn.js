@@ -77,8 +77,7 @@ class SignIn extends Component {
     this.state={
       user: new User("", ""),
       submitted: false,
-      loading: false,
-      errorMessage: ""
+      errorMessage: null
     }
     
   }
@@ -101,7 +100,6 @@ class SignIn extends Component {
       return 
     }
 
-    this.setState({loading:true})
 
     UserService.login(user)
     .then(data=>{
@@ -110,15 +108,14 @@ class SignIn extends Component {
     .catch(error=>{
       console.log(error)
       this.setState({
-        errorMessage: "Username or password is not valid",
-        loading:false
-      })
+        errorMessage: "Username or password is not valid"
+            })
     })
   }
 
   render(){
     const { classes } = this.props;
-    const {user, submitted, loading, errorMessage} = this.state
+    const {user, submitted, errorMessage} = this.state
 
     return (
       <Container component="main" maxWidth="xs">
@@ -132,6 +129,10 @@ class SignIn extends Component {
           <Typography component="h1" variant="h5">
             Sign in to FEE
           </Typography>
+
+          <div className={errorMessage && "error-message"}>
+              {errorMessage} 
+          </div>
           <form className={classes.form} noValidate onSubmit={e=>this.handleLogin(e)}>
             <TextField
               variant="outlined"
@@ -159,10 +160,6 @@ class SignIn extends Component {
               value={user.password}
               onChange = {e=>this.handleChange(e)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -173,11 +170,7 @@ class SignIn extends Component {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+
               <Grid item>
                 <Link href="/signUp" variant="body2">
                   {"Don't have an account? Sign Up"}

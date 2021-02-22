@@ -75,7 +75,7 @@ class SignUp extends Component {
       user: new User("", ""),
       submitted: false,
       loading: false,
-      errorMessage: ""
+      errorMessage: null
     }
 
     
@@ -114,7 +114,7 @@ class SignUp extends Component {
       }
       else{
         this.setState({
-          errorMessage:"Unexpected error ocurred, try later",
+          errorMessage:"Username already taken",
           loading:false
         })
       }
@@ -137,6 +137,9 @@ class SignUp extends Component {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          <div className={errorMessage && "error-message"}>
+              {errorMessage} 
+          </div>
           <form className={classes.form} noValidate onSubmit={e=>this.handleRegister(e)}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
