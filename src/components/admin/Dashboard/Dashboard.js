@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import AdminService from "../../../services/admin.service"
 
 import Sidebar from "../../layout/Sidebar/Sidebar"
+import Spinner from "../../layout/Spinner/Spinner"
+
+
 import Chart from "./Chart/Chart"
 import AttendingTable from "../../layout/Table/AttendingTable"
 
@@ -16,7 +19,7 @@ export default class Dashboard extends Component {
             postsNumber: "",
             eventsNumber: "",
             attendingsNumber: "",
-            attendings: ""
+            attendings: "",
     }
 
     this.deleteAttending = this.deleteAttending.bind(this)
@@ -113,66 +116,79 @@ export default class Dashboard extends Component {
 
         const {eventsNumber, usersNumber, postsNumber, attendingsNumber, attendings} = this.state
 
-        console.log(this.state)
-
-        return (
-            <div className="container">
-                <Sidebar />
-
-                <div className="dashboard-content">
-                    <h1 className="dashboard-title">Dashboard Admin</h1>
-                    <div className="bar">FEE Overview</div>
-
-                    <div className="stat-overview">
-
-                        <div className="overview">
-                            <div className="top-elements">
-                                <span className="number users">{usersNumber}</span>
-                                <i className="fas fa-users dashboard-icon "></i>
+        if(eventsNumber && usersNumber && postsNumber && attendingsNumber && attendings){
+            return (
+                <div className="container">
+                    <Sidebar />
+    
+                    <div className="dashboard-content">
+                        <h1 className="dashboard-title">Dashboard Admin</h1>
+                        <div className="bar">FEE Overview</div>
+    
+                        <div className="stat-overview">
+    
+                            <div className="overview">
+                                <div className="top-elements">
+                                    <span className="number users">{usersNumber}</span>
+                                    <i className="fas fa-users dashboard-icon "></i>
+                                </div>
+                                <p className="stat-title">Total Users</p>
                             </div>
-                            <p className="stat-title">Total Users</p>
-                        </div>
-
-                        <div className="overview">
-                            <div className="top-elements">
-                                <span className="number posts">{postsNumber}</span>
-                                <i className="fas fa-clipboard dashboard-icon "></i>
+    
+                            <div className="overview">
+                                <div className="top-elements">
+                                    <span className="number posts">{postsNumber}</span>
+                                    <i className="fas fa-clipboard dashboard-icon "></i>
+                                </div>
+                                <p className="stat-title">Total Posts</p>
                             </div>
-                            <p className="stat-title">Total Posts</p>
-                        </div>
-
-                        <div className="overview">
-                            <div className="top-elements">
-                                <span className="number events">{eventsNumber}</span>
-                                <i class="fas fa-calendar-day dashboard-icon "></i>
+    
+                            <div className="overview">
+                                <div className="top-elements">
+                                    <span className="number events">{eventsNumber}</span>
+                                    <i class="fas fa-calendar-day dashboard-icon "></i>
+                                </div>
+                                <p className="stat-title">Total Events</p>
                             </div>
-                            <p className="stat-title">Total Events</p>
+    
+    
+    
                         </div>
-
-
-
+    
+                        <div className="bar">Statistics</div>
+    
+                        <Chart
+                            eventsNumber={eventsNumber}
+                            postsNumber={postsNumber}
+                            usersNumber={usersNumber}
+                            attendingsNumber={attendingsNumber}
+                        />
+    
+                    <div className="bar">Events Attendings</div>
+                    
+                    <AttendingTable
+                        tableHeads={["Attending ID", "Event Name", "User", "Delete"]}
+                        attendings={attendings}
+                        deleteAttending={this.deleteAttending}
+                     />
+    
                     </div>
-
-                    <div className="bar">Statistics</div>
-
-                    <Chart
-                        eventsNumber={eventsNumber}
-                        postsNumber={postsNumber}
-                        usersNumber={usersNumber}
-                        attendingsNumber={attendingsNumber}
-                    />
-
-                <div className="bar">Events Attendings</div>
-                
-                <AttendingTable
-                    tableHeads={["Attending ID", "Event Name", "User", "Delete"]}
-                    attendings={attendings}
-                    deleteAttending={this.deleteAttending}
-                 />
-
                 </div>
-            </div>
+    
+            )
+        }
 
-        )
+        else{
+            return (
+                <div className="container">
+                    <Sidebar />
+                    <div className="dashboard-content">
+                        <Spinner />
+                    </div>
+                </div>
+            )
+        }
+
+        
     }
 }

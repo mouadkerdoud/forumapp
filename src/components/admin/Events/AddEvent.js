@@ -53,7 +53,7 @@ const styles = theme => ({
         return (
             <div className="container" >
                 <Sidebar />
-                <div className="content">
+                <div className="content add-content">
                     <form onSubmit={e=>this.handleSubmit(e)}>
                         <div className="element-form">
                             <h1 className="form-title">Add Event</h1>

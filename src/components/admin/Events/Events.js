@@ -3,15 +3,15 @@ import Sidebar from "../../layout/Sidebar/Sidebar"
 import EventTable from "../../layout/Table/EventTable"
 import AdminService from "../../../services/admin.service"
 import {Link, withRouter} from "react-router-dom"
+import Spinner from "../../layout/Spinner/Spinner"
 
 export class Events extends Component{
 
     constructor(props){
         super(props)
         this.state={
-            events:[],
+            events:null,
             errorMessage:"",
-            loading:true
         }
         this.deleteEvent = this.deleteEvent.bind(this)
         this.handleEditClick = this.handleEditClick.bind(this)
@@ -47,22 +47,36 @@ export class Events extends Component{
     }
 
     render(){
-        console.log(this.state)
-        return (
-            <div className="container" >
-                <Sidebar />
-                <div className="content">
-                    <h1 className="page-title">Events</h1>
-                    <Link to="/addevent"><button className="add-new">Add New</button></Link>
-                    <EventTable 
-                        tableHeads={["Event ID", "Event Title", "Start Date", "Finish Date", "Edit", "Delete"]}
-                        events={this.state.events}
-                        deleteEvent={this.deleteEvent}
-                        handleEditClick={this.handleEditClick}
-                        className="table" />
-                </div >
-            </div>
-        )
+        const {events} = this.state
+
+        if(events){
+            return (
+                <div className="container" >
+                    <Sidebar />
+                    <div className="content">
+                        <h1 className="page-title">Events</h1>
+                        <Link to="/addevent"><button className="add-new">Add New</button></Link>
+                        <EventTable 
+                            tableHeads={["Event ID", "Event Title", "Start Date", "Finish Date", "Edit", "Delete"]}
+                            events={this.state.events}
+                            deleteEvent={this.deleteEvent}
+                            handleEditClick={this.handleEditClick}
+                            className="table" />
+                    </div >
+                </div>
+            )
+        }
+        else{
+            return (
+                <div className="container" >
+                    <Sidebar />
+                    <div className="content">
+                        <Spinner />
+                    </div>
+                </div>
+            )
+        }
+
     }
 
 }

@@ -3,14 +3,15 @@ import Sidebar from "../../layout/Sidebar/Sidebar"
 import AdminService from "../../../services/admin.service"
 import UserTable from "../../layout/Table/UserTable"
 import {Link, withRouter} from "react-router-dom"
+import Spinner from "../../layout/Spinner/Spinner"
+
 
 class Users extends Component {
     constructor(props){
         super(props)
         this.state={
-            users:[],
+            users:null,
             errorMessage:"",
-            loading:true
         }
         this.deleteUser = this.deleteUser.bind(this)
         this.handleEditClick = this.handleEditClick.bind(this)
@@ -46,22 +47,37 @@ class Users extends Component {
     }
 
     render() {
-        return (
-            <div className="container" >
-            <Sidebar />
-            <div className="content">
-                <h1 className="page-title">Users</h1>
-                <Link to="/adduser"><button className="add-new">Add New</button></Link>
-                <UserTable
-                    tableHeads={["User ID", "First Name", "Last Name", "Username", "Role", "Edit", "Delete"]}
-                    users={this.state.users}
-                    deleteUser={this.deleteUser}
-                    handleEditClick={this.handleEditClick}
-                    className="table" 
-                 />
-            </div >
-        </div>
-        )
+        const {users} = this.state
+
+        if(users){
+            return (
+                <div className="container" >
+                <Sidebar />
+                <div className="content">
+                    <h1 className="page-title">Users</h1>
+                    <Link to="/adduser"><button className="add-new">Add New</button></Link>
+                    <UserTable
+                        tableHeads={["User ID", "First Name", "Last Name", "Username", "Role", "Edit", "Delete"]}
+                        users={this.state.users}
+                        deleteUser={this.deleteUser}
+                        handleEditClick={this.handleEditClick}
+                        className="table" 
+                     />
+                </div >
+            </div>
+            )
+        }
+
+        else{
+            return (
+                <div className="container" >
+                    <Sidebar />
+                    <div className="content">
+                        <Spinner />
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
