@@ -18,7 +18,7 @@ export default class NavBar extends Component {
     }
 
     componentDidMount(){
-        UserService.findUserById(UserService.currentUserValue.userId)
+        UserService.findUserById(UserService.currentUserValue && UserService.currentUserValue.userId)
             .then(result=>{
                 this.setState({
                     user : result.data

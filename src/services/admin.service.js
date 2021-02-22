@@ -37,6 +37,9 @@ class AdminService{
         return axios.get(API_URL + "users", {headers: this.headers})
     }
 
+    numberOfUsers(){
+        return axios.get(API_URL + "users-number", {headers: this.headers})
+    }
 
 
 
@@ -53,11 +56,11 @@ class AdminService{
       }
 
       findDocByUserId(userId){
-        return axios.get(API_URL + "findDocByUserId/" + userId) 
+        return axios.get(API_URL + "findDocByUserId/" + userId, {headers: this.headers}) 
       }
 
       getAllfiles(){
-        return axios.get(API_URL + "cvs");
+        return axios.get(API_URL + "cvs", {headers: this.headers});
      }
 
     //Posts related methods
@@ -83,6 +86,11 @@ class AdminService{
         return axios.get(API_URL + "posts-all", {headers: this.headers})
     }
 
+    numberOfPosts(){
+        return axios.get(API_URL + "posts-number", {headers: this.headers})
+    }
+
+
 
     //Events related methods
 
@@ -105,6 +113,15 @@ class AdminService{
     
     findAllEvents(){
         return axios.get(API_URL + "events-all", {headers: this.headers})
+    }
+
+    
+    numberOfEvents(){
+        return axios.get(API_URL + "events-number", {headers: this.headers})
+    }
+
+    numberOfAttendings(){
+        return axios.get(API_URL + "attendings-number",  {headers: this.headers})
     }
 
 }
