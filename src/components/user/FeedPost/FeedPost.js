@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 
 import avatar from "../../../img/avatar.jpg"
 import postImage from "../../../img/postImage.jpg"
+import Spinner from "../../layout/Spinner/Spinner"
+
 
 import "./FeedPost.css"
 
@@ -13,7 +15,7 @@ class FeedPost extends Component {
     constructor(props){
         super(props)
         this.state = {
-            posts:[]
+            posts:null
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -35,32 +37,44 @@ class FeedPost extends Component {
     render() {
 
         const {posts} = this.state
-        console.log(posts)
-        return (
-            <>
-                { posts.map( (post,index)=>{
-                    return(
-                        <div key={index} className="post-container">
-                            
-                            <div className="head-infos">
-                                <img alt="avatar" className="user-avatar" src={avatar} />
-                                <div className="head-infos-meta">
-                                    <p className="post-author">{post.user.firstName} {post.user.lastName}</p>
-                                    <p className="post-date">{post.publishDate}</p>
-                                </div>
-                            </div>
-                            
-                            <h2 onClick={()=>this.handleClick(post.postId)} className="post-title">{post.postTitle}</h2>
-                            <p className="short-desc">{post.postShortDescription}</p>
-                            <img alt="postImage" className="post-img" src={postImage} />
-                        </div>
-                    )
-                } ) }
 
-               
-            </>
-            
-        )
+        if(posts){
+            return (
+                <>
+                    { posts.map( (post,index)=>{
+                        return(
+                            <div key={index} className="post-container">
+                                
+                                <div className="head-infos">
+                                    <img alt="avatar" className="user-avatar" src={avatar} />
+                                    <div className="head-infos-meta">
+                                        <p className="post-author">{post.user.firstName} {post.user.lastName}</p>
+                                        <p className="post-date">{post.publishDate}</p>
+                                    </div>
+                                </div>
+                                
+                                <h2 onClick={()=>this.handleClick(post.postId)} className="post-title">{post.postTitle}</h2>
+                                <p className="short-desc">{post.postShortDescription}</p>
+                                <img alt="postImage" className="post-img" src={postImage} />
+                            </div>
+                        )
+                    } ) }
+    
+                   
+                </>
+                
+            )
+        }
+        else{
+            return (
+                    <div className="user-content-spinner">
+                        <Spinner />
+                    </div>
+            )
+        }
+
+
+        
     }
 }
 

@@ -4,6 +4,8 @@ import UserService from "../../../services/user.service"
 
 import {User} from "../../../models/user"
 import {Attending} from "../../../models/attending"
+import Spinner from "../../layout/Spinner/Spinner"
+
 
 import "./FeedEvents.css"
 
@@ -12,8 +14,8 @@ export default class FeedEvents extends Component {
     constructor(props){
         super(props)
         this.state = {
-            events:[],
-            attendings: [],
+            events:null,
+            attendings: null,
             errorMessage: "",
             currentUser: new User(),
             username: ""
@@ -101,9 +103,8 @@ export default class FeedEvents extends Component {
     }
 
     render() {
-        const {events} = this.state
-        console.log(this.state.username)
-        if(events){
+        const {events, attendings} = this.state
+        if(events && attendings){
             return (
                 <div className="events-container">
                     { events.map((event,index)=>{
@@ -122,8 +123,12 @@ export default class FeedEvents extends Component {
         }
 
         else{
-            return(<h1>Loading ...</h1>)
-        }
+            return (
+                <div className="user-content-spinner">
+                    <Spinner />
+                </div>
+                )        
+            }
 
     }
 }

@@ -35,6 +35,12 @@ html{
 
 }
 
+.user-content-spinner{
+  height: 100vh;
+  margin-left: 180px;
+  margin-top: 100px;
+}
+
 .add-content{
   margin-left: 450px;
 }
