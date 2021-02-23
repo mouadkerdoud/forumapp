@@ -27,7 +27,7 @@ class SignedInLinks extends Component {
                 <nav>
                 <ul className="nav-links">
                     <li><Link to="/profile">{user.firstName} {user.lastName} </Link></li>
-                    <li><Link to="/home">Feed</Link></li>
+                    <li><Link to="/home">Articles</Link></li>
                     <li><Link to="/coming-events">Events</Link></li>
                 </ul>   
                 </nav>

@@ -49,7 +49,6 @@ class PostDetail extends Component {
     }
 
     render() {
-        console.log(this.state)
         const {postTitle, postShortDescription, postLongDescription, publishDate, username} = this.state
         return (
             <>

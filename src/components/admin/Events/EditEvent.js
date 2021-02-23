@@ -78,12 +78,11 @@ const styles = theme => ({
     }
 
     render(){
-        console.log(this.state)
         const {classes} = this.props;
         return (
             <div className="container" >
                 <Sidebar />
-                <div className="content">
+                <div className="content add-content">
                     <form onSubmit={e=>this.handleSubmit(e)}>
                         <div className="element-form">
                             <h1 className="form-title">Edit Event</h1>
@@ -93,7 +92,7 @@ const styles = theme => ({
                                     value={this.state.eventName}
                                     variant="outlined"
                                     margin="normal"
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     required
                                     label="Event Title"
                                     name="eventName"
@@ -108,7 +107,7 @@ const styles = theme => ({
                                     value={this.state.startDate}
                                     name="startDate"
                                     id="datetime-local"
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     label="Starting Date"
                                     type="datetime-local"
                                     className={classes.textField}
@@ -125,7 +124,7 @@ const styles = theme => ({
                                     value={this.state.finishDate}
                                     name="finishDate"
                                     id="datetime-local"
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     label="Ending Date"
                                     type="datetime-local"
                                     className={classes.textField}
@@ -144,7 +143,7 @@ const styles = theme => ({
                                     variant="outlined"
                                     margin="normal"
                                     multiline={true}
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     rows={5}
                                     required
                                     label="Event Description"

@@ -20,7 +20,6 @@ class Users extends Component {
     componentDidMount(){
         AdminService.findAllUsers()
         .then(users=>{
-            console.log(users)
             this.setState({users:users.data})
         })
         .catch(error=>{

@@ -146,7 +146,7 @@ export default class Dashboard extends Component {
                             <div className="overview">
                                 <div className="top-elements">
                                     <span className="number events">{eventsNumber}</span>
-                                    <i class="fas fa-calendar-day dashboard-icon "></i>
+                                    <i className="fas fa-calendar-day dashboard-icon "></i>
                                 </div>
                                 <p className="stat-title">Total Events</p>
                             </div>

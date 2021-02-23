@@ -34,7 +34,7 @@ class LandingPage extends Component{
                 <div className="landing-page">
                     <div className="inner-landing">
                         <Logo className="mic-logo" />
-                        <p className="secondary-headline">4 - 5 February, 2019, Kenitra City</p>
+                        <p className="secondary-headline">4 - 5 February, 2021, Kenitra City</p>
                         <h1 className="main-headline">FORUM ENSAK ENTREPRISE</h1>
                         <Link to="signIn"><button className="landing-btn">Register</button></Link>
                     </div>

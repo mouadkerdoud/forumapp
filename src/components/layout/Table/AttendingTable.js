@@ -37,7 +37,6 @@ const useStyles = makeStyles({
 export default function CustomizedTables(props) {
   const classes = useStyles();
   const {tableHeads, attendings, deleteAttending} = props
-  console.log(attendings)
   
   return (
     <TableContainer className="attendings-table"  component={Paper}>

@@ -63,7 +63,7 @@ const styles = theme => ({
                                     value={this.state.eventName}
                                     variant="outlined"
                                     margin="normal"
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     required
                                     label="Event Title"
                                     name="eventName"
@@ -77,7 +77,7 @@ const styles = theme => ({
                                 <TextField
                                     name="startDate"
                                     id="datetime-local"
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     label="Starting Date"
                                     type="datetime-local"
                                     className={classes.textField}
@@ -94,7 +94,7 @@ const styles = theme => ({
                                     name="finishDate"
                                     required
                                     id="datetime-local"
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     label="Ending Date"
                                     type="datetime-local"
                                     className={classes.textField}
@@ -112,7 +112,7 @@ const styles = theme => ({
                                     variant="outlined"
                                     margin="normal"
                                     multiline={true}
-                                    fullWidth="true"
+                                    fullWidth={true}
                                     rows={5}
                                     required
                                     label="Event Description"
