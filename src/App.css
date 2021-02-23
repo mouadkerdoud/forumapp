@@ -41,6 +41,10 @@ html{
 
 }
 
+.update-profile-container{
+  margin-left: 100px;
+}
+
 .user-content-spinner{
   height: 100vh;
   margin-left: 180px;

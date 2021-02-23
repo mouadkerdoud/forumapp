@@ -10,6 +10,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import { withStyles } from '@material-ui/core/styles';
 
 import Navbar from "../../layout/Navbar/NavBar"
+import avatarProfile from "../../../img/user.png"
 
 
 
@@ -33,7 +34,7 @@ class UpdateProfile extends Component {
             password:"",
             role:"",
             image: "",
-            file:null
+            file:null,
         }
 
         if(!UserService.currentUserValue){
@@ -91,21 +92,37 @@ class UpdateProfile extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        let {file, userId} = this.state
+        let {file, userId, image} = this.state
         let user = this.state
         
         delete user["file"]
         delete user["image"]
+        delete user["isNewUser"]
 
 
         UserService.updateUser(user)
             .then(result=>{
 
                 if(file){
-                    UserService.updateUserFile(file, userId)
-                    .then(result=>{
-                        this.props.history.push("/profile")
-                    })
+
+                    if(image){
+                        UserService.updateUserFile(file, userId)
+                        .then(result=>{
+                            this.props.history.push("/profile")
+                        })
+                        .catch(error=>{
+                            console.log(error)
+                        })
+                    }else{
+                        UserService.uploadUserFiles(file, userId)
+                        .then(result=>{
+                            this.props.history.push("/profile")
+                        })
+                        .catch(error=>{
+                            console.log(error)
+                        })
+                    }
+                    
                 }
                 else this.props.history.push("/profile")
                 
@@ -123,18 +140,18 @@ class UpdateProfile extends Component {
         const {image} = this.state
         const fileInput = React.createRef(null)
 
-
+        const profileImage = image ? <img alt="" src={"data:image/png;base64,"+image.data} className="edit-profile-img"/> : <img alt="" src={avatarProfile} className="decoil-img" />
         return (
             <>
             <Navbar />
-            <div className="container" >
+            <div className="container update-profile-container" >
                 <div style={{marginTop:"40px"}} className="content">
                     <form onSubmit={e=>this.handleSubmit(e)} >
                         <div className="element-form">
                             <h1 className="form-title">Update Profile</h1>
 
+                            {profileImage}
                             
-                            <img alt="" src={"data:image/png;base64,"+image.data} className="edit-profile-img"/>
                             
                             <CreateIcon
                                 onClick={()=>fileInput.current.click()}

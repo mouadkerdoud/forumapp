@@ -3,7 +3,8 @@ import UserService from "../../../services/user.service"
 import CloseIcon from '@material-ui/icons/Close';
 import Navbar from "../../layout/Navbar/NavBar"
 import {withRouter} from "react-router-dom"
-import Spinner from "../../layout/Spinner/Spinner"
+import avatarProfile from "../../../img/user.png"
+
 
 import "./Profile.css"
 
@@ -15,7 +16,7 @@ class UserProfile extends Component {
         this.state = {
             user: "",
             attendings: [],
-            image: null
+            image: ""
         }
 
         this.findUserAttendings = this.findUserAttendings.bind(this)
@@ -36,6 +37,9 @@ class UserProfile extends Component {
                 this.setState({
                     image: result.data
                 })
+            })
+            .catch(error=>{
+                console.log(error)
             })
 
         UserService.findAllAttendings()
@@ -85,8 +89,8 @@ class UserProfile extends Component {
 
         const {user, image} = this.state
         const userAttendings = this.findUserAttendings()
+        const profileImage = image ?  <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/> : <img alt="" src={avatarProfile} className="profile-img"/>
         
-        if(image){
             return (
 
                 <>
@@ -94,9 +98,7 @@ class UserProfile extends Component {
                     <Navbar />
                     <div className="profile-container">
                             <div className="user-infos">    
-                                <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/>
-    
-                                
+                                    {profileImage}
                                 <div className="user-cred">
                                     <h1 className="profile-name">{user.firstName} {user.lastName}</h1>
                                     <p className="profile-username">{user.username}</p>
@@ -133,14 +135,6 @@ class UserProfile extends Component {
                    
                 </>
             )
-        }
-        else{
-            return (
-                <div className="user-content-spinner">
-                    <Spinner />
-                </div>
-            )
-        }
 
 
     }

@@ -87,3 +87,11 @@
     left:380px;
     bottom: 200px;
 }
+
+.decoil-img{
+    border-radius: 50%;
+    width: 250px;
+    height: 230px;
+    margin-left: 130px;
+    margin-top: 20px;
+}
