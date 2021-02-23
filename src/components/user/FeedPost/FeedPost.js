@@ -15,7 +15,7 @@ class FeedPost extends Component {
     constructor(props){
         super(props)
         this.state = {
-            posts:null
+            posts:null,
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -34,6 +34,7 @@ class FeedPost extends Component {
             })
     }
 
+
     render() {
 
         const {posts} = this.state
@@ -44,9 +45,7 @@ class FeedPost extends Component {
                     { posts.map( (post,index)=>{
                         return(
                             <div key={index} className="post-container">
-                                
                                 <div className="head-infos">
-                                    <img alt="avatar" className="user-avatar" src={avatar} />
                                     <div className="head-infos-meta">
                                         <p className="post-author">{post.user.firstName} {post.user.lastName}</p>
                                         <p className="post-date">{post.publishDate}</p>

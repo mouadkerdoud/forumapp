@@ -90,7 +90,7 @@ class UserProfile extends Component {
         const {user, image} = this.state
         const userAttendings = this.findUserAttendings()
         const profileImage = image ?  <img alt="" src={"data:image/png;base64,"+image.data} className="profile-img"/> : <img alt="" src={avatarProfile} className="profile-img"/>
-        
+        console.log(image.data)
             return (
 
                 <>

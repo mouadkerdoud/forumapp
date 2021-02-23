@@ -4,6 +4,9 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import EventIcon from '@material-ui/icons/Event';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import GroupIcon from '@material-ui/icons/Group';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+
 
 export const SidebarData = [
 
@@ -12,6 +15,12 @@ export const SidebarData = [
         title:"Dashboard",
         icon:<DashboardIcon />,
         link:"/dashboard",
+    },
+
+    {
+        title:"Users",
+        icon:<GroupIcon />,
+        link:"/users",
     },
 
     {
@@ -27,9 +36,9 @@ export const SidebarData = [
     },
 
     {
-        title:"Users",
-        icon:<GroupIcon />,
-        link:"/users",
+        title:"Account",
+        icon:<AccountCircleIcon />,
+        link:"/account",
     },
 
     {

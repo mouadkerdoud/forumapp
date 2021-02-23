@@ -55,6 +55,16 @@ class AdminService{
         return axios.post(API_URL + "uploadUserDoc", formData, {headers: {"Content-Type":"multipart/form-data"}} )
       }
 
+      
+    updateUserFile(files,userId){
+        let formData = new FormData()
+        
+        formData.append("files", files)
+        formData.append("userId", userId)
+
+        return axios.put(API_URL + "updateUserFile", formData, {headers: {"Content-Type":"multipart/form-data"}} )
+    }
+
       findDocByUserId(userId){
         return axios.get(API_URL + "findDocByUserId/" + userId, {headers: this.headers}) 
       }

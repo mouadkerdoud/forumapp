@@ -11,6 +11,7 @@ import {Role} from "./models/role"
 
 //Admin
   import Dashboard from "./components/admin/Dashboard/Dashboard"
+  import AdminAccount from "./components/admin/Account/AdminAccount"
 
   //Posts
   import Posts from "./components/admin/Posts/Posts"
@@ -53,6 +54,7 @@ function App() {
 
           {/*AuthGuard Admin */}
           <AuthGuard roles={[Role.ADMIN]} path="/dashboard"  component={Dashboard} />
+          <AuthGuard roles={[Role.ADMIN]} path="/account"  component={AdminAccount} />
           <AuthGuard roles={[Role.ADMIN]} path="/posts"  component={Posts} />
           <AuthGuard roles={[Role.ADMIN]} path="/addpost"  component={AddPost} />
           <AuthGuard roles={[Role.ADMIN]} path="/events"  component={Events} />

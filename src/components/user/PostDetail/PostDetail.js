@@ -40,7 +40,7 @@ class PostDetail extends Component {
                 postShortDescription: result.data.postShortDescription,
                 postLongDescription: result.data.postLongDescription,
                 publishDate: result.data.publishDate,
-                username: result.data.username,
+                username: result.data.user.username,
               })
             })
             .catch(error=>{
