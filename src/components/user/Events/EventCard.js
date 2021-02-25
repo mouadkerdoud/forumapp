@@ -55,11 +55,6 @@ export default function RecipeReviewCard({event, attendEvent, deleteAttending, i
     <Card className={classes.root}>
       <CardHeader
         
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <img alt="avatar" className="user-avatar" src={avatar} />
-          </Avatar>
-        }
         title={event.startDate.replace("T", " ")}
         subheader={event.eventName}
         subheaderTypographyProps={{color:"inherit"}}
